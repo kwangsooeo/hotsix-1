@@ -9,8 +9,10 @@
 
 	<form id="noticeForm" action="/notice/list" method="get" >
 	<input type="hidden" name="page" value="${cri.page }">
-	<input type="hidden" name="pageNum" value="${cri.pageNum }">
+	<input type="hidden" name="perPageNum" value="${cri.perPageNum }">
 	<input type="hidden" name="displayPageNum" value="${cri.displayPageNum }">
+	<input type="hidden" name="keyword" value="${cri.keyword }">
+	<input type="hidden" name="searchType" value="${cri.searchType }">
 	</form>
 	
 	<script src="/resources/plugins/jQuery/jQuery-2.1.4.min.js"></script>

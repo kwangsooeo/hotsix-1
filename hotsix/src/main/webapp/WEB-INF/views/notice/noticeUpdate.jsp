@@ -33,7 +33,7 @@
                   <thead>
                   
                   
-	<form method="post" action="/notice/noticeUpdate" >
+	<form class="UpdatePOST" id="updateForm" >
 	<input type="hidden" name="page" value="${cri.page }">
 	<input type="hidden" name="perPageNum" value="${cri.perPageNum }">
 	<input type="hidden" name="displayPageNum" value="${cri.displayPageNum }">
@@ -97,13 +97,13 @@
 		
 		$(document).ready(function(){
 			
-			var updatForm = $("#updatForm");
+			var updateForm = $("#updateForm");
 			
 		$("#back").click(function(){
-						
-			updatForm.attr("action","/notice/noticeUpdate");
-			updatForm.attr("method","post");
-			updatForm.submit();
+			
+			updateForm.attr("action","/notice/noticeUpdate");
+			updateForm.attr("method","post");
+			updateForm.submit();
 			
 			
 		});
