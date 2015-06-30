@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.hotsix.mapper.NoticeMapper">
+
+	
+		<sql id="searchSQL">
+		<if test="searchType != null">
+			<if test="searchType eq 't'.toString()">
+				and title like CONCAT('%' #{keyword} '%')
+			</if>
+			<if test="searchType eq 'c'.toString()">
+				and contents like CONCAT('%' #{keyword} '%')
+			</if>
+			<if test="searchType eq 'tc'.toString()">
+				and (title like CONCAT('%',#{keyword},'%') OR contents like CONCAT('%' #{keyword},'%'))
+			</if>
+		</if>
+		</sql>
+		<select id="noticeList" resultType="org.hotsix.notice.NoticeVO">
+		select noticeNo,title,contents,regdate,viewCnt from tbl_notice where
+		noticeNo > 0
+		<include refid="searchSQL" />
+		order by noticeNo desc limit #{pageStart},#{perPageNum}
+	</select>
+
+	<select id="countPaging" resultType="org.hotsix.page.PageMaker">
+		select count(noticeNo) totalCount from tbl_notice where noticeNo > 0
+		<include refid="searchSQL" />
+	</select>
+
+</mapper>
