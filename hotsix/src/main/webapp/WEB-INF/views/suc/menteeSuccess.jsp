@@ -8,13 +8,12 @@
 </head>
 <body>
 <form id="jobForm" action="/board/list" method="get">
-		
 		<input type = "hidden" name="page" value='${cri.page }'>
 		<input type = "hidden" name="perpageNum" value='${cri.perPageNum }'>
-		<input type = "hidden" name="displayPage" value='${cri.disPlayPage }'>
+		<input type = "hidden" name="displayPageNum" value='${cri.displayPageNum }'>
 		<input type = "hidden" name="keyword" value='${cri.keyword }'>
 		<input type = "hidden" name="searchType" value='${cri.searchType }'>
-	</form>
+</form>
 
 <script type="text/javascript">
 

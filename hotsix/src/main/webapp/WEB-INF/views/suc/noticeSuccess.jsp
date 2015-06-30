@@ -10,7 +10,7 @@
 	<form id="noticeForm" action="/notice/list" method="get" >
 	<input type="hidden" name="page" value="${cri.page }">
 	<input type="hidden" name="pageNum" value="${cri.pageNum }">
-	<input type="hidden" name="displayNum" value="${cri.displayNum }">
+	<input type="hidden" name="displayPageNum" value="${cri.displayPageNum }">
 	</form>
 	
 	<script src="/resources/plugins/jQuery/jQuery-2.1.4.min.js"></script>
