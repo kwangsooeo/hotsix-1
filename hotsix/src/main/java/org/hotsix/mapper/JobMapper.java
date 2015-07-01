@@ -14,7 +14,7 @@ public interface JobMapper {
 	@Select("select now()")
 	public String whatTime() throws Exception;
 	
-	@Select("select jobNo, jobName, parent, depth from tbl_job where jobNo>0 limit #{pageStart}, #{perPageNum}")
+//	@Select("select jobNo, jobName, parent, depth from tbl_job where jobNo>0 limit #{pageStart}, #{perPageNum}")
 	public List<JobVO> jobList(Criteria cri);
 	
 	@Select("select jobName,depth,jobNo,parent from tbl_job where depth = #{depth}")
@@ -24,7 +24,7 @@ public interface JobMapper {
 	public void insertJobVal(JobVO vo);
 	
 	@Delete("delete from tbl_job where jobNo = #{jobNo}")
-	public void deleteJobVal(int jobNo);
+	public void deleteJobVal(Criteria cri);
 	
 	@Select("select jobName,depth,jobNo,parent from tbl_job where depth = #{depth} and parent=#{parent}")
 	public List<JobVO> jobChoice(JobVO vo);

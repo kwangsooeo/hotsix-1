@@ -30,8 +30,8 @@ public class JobServiceImpl implements JobService{
 	}
 
 	@Override
-	public void deleteJobVal(int jobNo) {
-		jmapper.deleteJobVal(jobNo);
+	public void deleteJobVal(Criteria cri) {
+		jmapper.deleteJobVal(cri);
 	}
 
 	@Override

@@ -96,7 +96,7 @@
                 <div id="pagination" class="col-sm-3">
                   <br>
                   <input id="registBtn" type="button" class="btn btn-default" value='선택등록'>
-              	 <input id="rejectBtn" type="button" class="btn btn-default" value='선택거절'>
+              	  <input id="rejectBtn" type="button" class="btn btn-default" value='선택거절'>
  				</div>
                <div class="col-sm-9">
                   <ul class="pager pagenation">

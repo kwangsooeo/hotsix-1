@@ -22,7 +22,7 @@ public interface NoticeMapper {
 	@Select("select noticeNo,title,contents,regdate,viewCnt from tbl_notice where noticeNo=#{noticeNo}")
 	public NoticeVO	noticeRead(Integer noticeNo) throws Exception;
 	
-	@Select("select noticeNo,title,contents,regdate,viewCnt from tbl_notice where noticeNo > 0 order by noticeNo desc limit 0,10")
+//	@Select("select noticeNo,title,contents,regdate,viewCnt from tbl_notice where noticeNo > 0 order by noticeNo desc limit 0,10")
 	public List<NoticeVO> noticeList(Criteria cri) throws Exception;
 	
 	@Delete("delete from tbl_notice where noticeNo=#{noticeNo}")
@@ -34,6 +34,6 @@ public interface NoticeMapper {
 	@Select("select noticeNo,title,contents,regdate,viewCnt from tbl_notice where noticeNo > 0 order by noticeNo desc limit #{pageStart},#{pageNum}")
 	public List<NoticeVO> listCriteria(Criteria cri);
 	
-	@Select("select count(noticeNo) totalCount from tbl_notice where noticeNo > 0")
+//	@Select("select count(noticeNo) totalCount from tbl_notice where noticeNo > 0")
 	public PageMaker countPaging(Criteria cri)throws Exception;
 }

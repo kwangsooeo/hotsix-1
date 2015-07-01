@@ -93,12 +93,10 @@
 				<div class="row box-header">
 					<div class="col-sm-3">
 						<br>
-						<div class="btn-group">
-							<input id="saveBtn" type=button value="저장"	class="btn btn-primary">
-							<input id="delBtn" type="button" value="삭제" class="btn btn-danger">
-							<input id="email" type="button" value="이메일" class="btn btn-info">
-							<input id="massage" type="button" value="쪽지" class="btn btn-warning">
-						</div>
+							<button class="btn btn-default" id="saveBtn">저장</button>
+							<button class="btn btn-default" id="delBtn">삭제</button>
+							<button class="btn btn-default" id="email">이메일</button>
+							<button class="btn btn-default" id="massage">쪽지</button>
 					</div>
 					<div class="col-sm-7">
 						<ul class="pager pagenation">

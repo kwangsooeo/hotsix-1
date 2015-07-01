@@ -4,6 +4,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3mapper.dtd">
 
 <mapper namespace="org.hotsix.mapper.JobMapper">
+<select id="jobList" resultType="org.hotsix.job.JobVO">
+	select jobNo, jobName, parent, depth from tbl_job where jobNo>0 
+	<include refid="searchSQL"/>
+	limit #{pageStart}, #{perPageNum}
+</select>
 
 
+ <sql id="searchSQL">
+    <if test="searchType != null">
+  	<if test="searchType eq 'jn'.toString()">
+  	and jobname like CONCAT('%',#{keyword},'%')
+  	</if>
+  	<if test="searchType eq 'd'.toString()">
+  	and  depth like CONCAT('%',#{keyword},'%')
+  	</if>
+  </if>  
+  </sql>
 </mapper>

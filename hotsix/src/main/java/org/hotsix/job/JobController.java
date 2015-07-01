@@ -33,28 +33,28 @@ public class JobController {
 	}
 	
 	@RequestMapping("list")
-	public String jobList(@ModelAttribute("cri")Criteria cri, Model model) throws Exception{
-		model.addAttribute("list",jService.jobList(cri));
+	public String jobList(@ModelAttribute("cri") Criteria cri, Model model) throws Exception{
+		System.out.println(cri.toString());
+		model.addAttribute("list", jService.jobList(cri));
 		model.addAttribute("page", jmapper.jobCount(cri).calcPage(cri));
 		return "/job/jobList";
 	}
 	
 	@RequestMapping(value = "regist", method = RequestMethod.GET)
-	public String jobRegistGet(Model model) throws Exception{
+	public String jobRegistGet(@ModelAttribute("cri") Criteria cri, Model model) throws Exception{
 		model.addAttribute("jobName",jService.readJobName("a"));
 		return "/job/jobRegist";
 	}
 	
 	@RequestMapping(value = "regist", method = RequestMethod.POST)
-	public String jobRegistPost(JobVO vo, Model model) throws Exception{
+	public String jobRegistPost(@ModelAttribute("cri") Criteria cri, JobVO vo, Model model) throws Exception{
 		jService.insertJobVal(vo);
-		return "/suc/success";
+		return "/suc/jobSuccess";
 	}
 	
 	@RequestMapping("jobChoice")
 	@ResponseBody
 	public List<JobVO> jobView(JobVO vo) throws Exception{
-		System.out.println(vo.toString());
 		return jService.jobChoice(vo);
 	}
 	
@@ -67,9 +67,9 @@ public class JobController {
 			return "no";
 	}
 	
-	@RequestMapping("del/{jobNo}")
-	public String jobDelete(@PathVariable("jobNo")int jobNo) throws Exception{
-		jService.deleteJobVal(jobNo);
-		return "Delete Success!!!";
+	@RequestMapping("del")
+	public String jobDelete(@ModelAttribute("cri") Criteria cri, Model model) throws Exception{
+		jService.deleteJobVal(cri);
+		return "/suc/jobSuccess";
 	}
 }

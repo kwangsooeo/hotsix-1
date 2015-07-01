@@ -70,6 +70,9 @@
 					<input type="hidden" name="realDepth" value="">
 					<input type="hidden" name="realParent" value="">
 					<input type="hidden" name="idCheck" value="notdefined">
+					<input type="hidden" name="page" value="${cri.page }">
+					<input type="hidden" name="perPageNum" value="${cri.perPageNum }">
+					<input type="hidden" name="displayPageNum" value="${cri.displayPageNum }">
 				</form>
                 </div><!-- /.box-body -->
               </div><!-- /.box -->

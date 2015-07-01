@@ -12,12 +12,19 @@ public class Criteria {
 	private int mentoNo;
 	private int NoticeNo;
 	private int menteeNo;
+	private int jobNo;
 	
 	private int parent;
 	private String searchType;
 	private String keyword;
 	
 	
+	public int getJobNo() {
+		return jobNo;
+	}
+	public void setJobNo(int jobNo) {
+		this.jobNo = jobNo;
+	}
 	public int getNoticeNo() {
 		return NoticeNo;
 	}

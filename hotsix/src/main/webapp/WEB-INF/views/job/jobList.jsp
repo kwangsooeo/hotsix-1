@@ -4,10 +4,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<%@include file="../include/header.jsp"%>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
+<%@include file="../include/header.jsp"%>
 <div class="content-wrapper">
 	<!-- Content Header (Page header) -->
 	<section class="content-header">
@@ -18,13 +18,25 @@
 	</ol>
 	
 	</section>
+	
 	<section class="content">
 	<div class="row">
+	
 		<div class="col-xs-12">
 			<div class="box">
 				<div class="box-header">
 					<h3 class="box-title">JobList</h3>
 				</div>
+			<div class="search pull-right" style="margin-right: 1%">
+			
+			<select name ="searchType">
+				<option value="">---</option>
+				<option value="jn"<c:out value="${cri.searchType eq 'jn' ?'selected':''}"/>>JobName</option>
+				<option value="d"<c:out value="${cri.searchType eq 'd' ?'selected':''}"/>>Depth</option>
+			</select>
+			<input type="text" id="searchKey" name="keyword" value="${cri.keyword}">
+			
+			</div>
 				<!-- /.box-header -->
 				<div class="box-body">
 					<table id="example2" class="table table-bordered table-hover">
@@ -40,7 +52,7 @@
 						<tbody>
 							<c:forEach items="${list}" var="list">
 								<tr>
-									<td>${list.jobNo }</td>
+									<td><input type="hidden" value="${list.jobNo }" id="jobNoList_${list.jobNo }">${list.jobNo }</td>
 									<td>${list.jobName }</td>
 									<td>${list.parent }</td>
 									<td>${list.depth }</td>
@@ -62,11 +74,15 @@
 					</div>
 					<div class="col-sm-9">
 						<ul class="pager pagenation">
-							<li><a href="#">Previous</a></li>
+							<c:if test="${page.prev  != 0 }">
+							<li><a href="${page.prev }">Previous</a></li>
+							</c:if>
 							<c:forEach var="page" begin="${page.first }" end="${page.last }">
 								<li class="active"><a href="${page }">${page }</a></li>
 							</c:forEach>
-							<li><a href="#">Next</a></li>
+							<c:if test="${page.next != 0 }">
+							<li><a href="${page.next }">Next</a></li>
+							</c:if>
 						</ul>
 					</div>
 				</div>
@@ -78,22 +94,45 @@
 </div>
 
 <form id="pageForm">
-
+	<input type="hidden" name="jobNo" value="1">
+	<input type="hidden" name="page" value="${cri.page }">
+	<input type="hidden" name="perPageNum" value="${cri.perPageNum }">
+	<input type="hidden" name="displayPageNum" value="${cri.displayPageNum }">
+	<input type="hidden" name="searchType" value="">
+	<input type="hidden" name="keyword" value="">
 </form>
-
 <script src="/resources/plugins/jQuery/jQuery-2.1.4.min.js"></script>
 <script type="text/javascript">
 $('#example2').on("click","tbody tr td button", function(){
+	console.log($('#delBtn').val());
 	var targetMode = $(this).attr("id");
 	var delValue = $(this).val();
+	console.log($('#pageForm').find("input[name=jobNo]").val());
 	if(targetMode == "delBtn"){
-		$.get("")
+		$('#pageForm').find("input[name=jobNo]").val(delValue);
+		$('#pageForm').attr("action", "/job/del").attr('method','post').submit();
 	}else if(targetMode == "upBtn"){
 		
 	}
-	console.log(delValue);
 });
 
+$('.search').on("keydown",function(event){
+	if(event.keyCode==13){
+		var searchType = $('.search').find("select[name=searchType]").val();
+		var keyword = $('.search').find("input[name=keyword]").val();
+		$('#pageForm').find("input[name=searchType]").val(searchType);
+		$('#pageForm').find("input[name=keyword]").val(keyword);
+		$('#pageForm').attr("action","/job/list").attr("method","get").submit();
+	}
+});
+
+$(".pager").on("click","li a", function(event){
+	event.preventDefault();
+	var targetHref = $(this).attr("href");
+	$('#pageForm').find("input[name=page]").val(targetHref);
+	$('#pageForm').attr("action", "/job/list").attr("method","get");
+	$('#pageForm').submit();
+});
 </script>
 <!-- /.content-wrapper -->
 <%@include file="../include/footer.jsp"%>

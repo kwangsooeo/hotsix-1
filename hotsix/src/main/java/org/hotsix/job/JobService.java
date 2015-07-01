@@ -12,7 +12,7 @@ public interface JobService {
 	
 	public void insertJobVal(JobVO vo) throws Exception;
 	
-	public void deleteJobVal(int jobNo) throws Exception;
+	public void deleteJobVal(Criteria cri) throws Exception;
 
 	public List<JobVO> jobChoice(JobVO vo) throws Exception;
 }
