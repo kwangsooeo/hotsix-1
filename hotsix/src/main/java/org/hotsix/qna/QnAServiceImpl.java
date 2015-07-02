@@ -48,8 +48,11 @@ public class QnAServiceImpl implements QnAService {
 		// TODO Auto-generated method stub
 		return mapper.total(cri);
 	}
+	@Override
+	public QnAVO qnaRead(int qnaNo) throws Exception {
+		// TODO Auto-generated method stub
+		return mapper.read(qnaNo);
+	}
 	
 	
-
-
 }
