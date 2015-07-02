@@ -43,20 +43,39 @@ public class QnAController {
 	public String deleteQnA(@PathVariable("qnaNo")int qnaNo) throws Exception{
 		service.qnaRemove(qnaNo);
 		service.qnaRemoveWith(qnaNo);
-		return qnaNo+"번 질문이 삭제되었습니다.";
+		return qnaNo+" Delete 삭제";
 	}
 	
-	
-	@RequestMapping("/reply/insert")
+	@RequestMapping(value="/registQnA", method= RequestMethod.POST)
 	@ResponseBody
-	public void replyInsert(QnAVO qvo) throws Exception{
-		
+	public String registReply(QnAVO qvo) throws Exception{
+		logger.info(qvo.getContents());
+		logger.info("등록");
 		service.qnaRegist(qvo);
+		return "completed";
 	}
 	
-	@RequestMapping(value="/read/{parents}")
-	public String reRead(@ModelAttribute("cri")Criteria cri, Model model) throws Exception{
+	@RequestMapping("/deleteReply/{qnaNo}")
+	@ResponseBody
+	public String deleteReply(@PathVariable("qnaNo")int qnaNo) throws Exception{
+		service.qnaRemove(qnaNo);
 		
-		return "/qna/qnaRead";
+		return qnaNo+" Delete 삭제";
 	}
+	
+	@RequestMapping(value="/readReply/{qnaNo}", method=RequestMethod.GET)
+	@ResponseBody
+	public QnAVO modifyReply(@PathVariable("qnaNo")int qnaNo) throws Exception{
+		
+		return service.qnaRead(qnaNo);
+	}
+	
+	@RequestMapping(value="/modifyReply", method=RequestMethod.POST)
+	@ResponseBody
+	public String modifyReplypost(QnAVO qvo) throws Exception{
+		service.qnaModify(qvo);
+		
+		return "update";
+	}
+	
 }
