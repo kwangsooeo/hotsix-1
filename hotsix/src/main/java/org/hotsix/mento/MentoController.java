@@ -24,7 +24,7 @@ public class MentoController {
 	public String mentoList(@ModelAttribute("cri")Criteria cri , Model model)throws Exception{
 		model.addAttribute("list", service.listMento(cri));
 		model.addAttribute("pageMaker", service.totalCount(cri).calcPage(cri));
-		model.addAttribute("countWaiting",service.countWaiting(cri).calcPage(cri));
+		model.addAttribute("mentoCount",service.mentoCount(cri).calcPage(cri));
 		return "/mento/mentoList";
 	}
 	

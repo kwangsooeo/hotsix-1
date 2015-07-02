@@ -39,9 +39,10 @@ public interface MentoMapper {
 /*	@Select("select count(mentoNo) total from tbl_mento where mentoNo>0")*/
 	public PageMaker countPaging(Criteria cri)throws Exception;
 
-	public PageMaker countWaiting(Criteria cri)throws Exception;
+	public PageMaker mentoCount(Criteria cri)throws Exception;
 	
-	@Update ("update tbl_mento set status=1 where mentoNo=#{mentoNo}")
+	
+	@Update ("update tbl_mento set status='2' where mentoNo=#{mentoNo}")
 	public void registmento(int MentoNo)throws Exception;
 
 }

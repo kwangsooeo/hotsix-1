@@ -7,7 +7,7 @@ public class MentoVO extends MemberVO{
 	private int mentoNo;
 	private int memberNo;
 	private String career;
-	private boolean status;
+	private int status;
 	private String id;
 	
 
@@ -105,12 +105,19 @@ public class MentoVO extends MemberVO{
 		return career;
 	}
 
-	public boolean isStatus() {
+	public int getStatus() {
 		return status;
 	}
-	public void setStatus(boolean status) {
+
+	public void setStatus(int status) {
 		this.status = status;
 	}
+
+	public void setCareer(String career) {
+		this.career = career;
+	}
+
+	
 	
 	
 	

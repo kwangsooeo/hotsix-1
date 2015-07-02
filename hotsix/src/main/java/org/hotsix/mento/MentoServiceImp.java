@@ -29,8 +29,8 @@ public class MentoServiceImp implements MentoService {
 	
 /*	멘토등록대기중 카운트*/
 	@Override
-	public PageMaker countWaiting(Criteria cri) throws Exception {
-		return mapper.countWaiting(cri);
+	public PageMaker mentoCount(Criteria cri) throws Exception {
+		return mapper.mentoCount(cri);
 	}
 
 	@Override

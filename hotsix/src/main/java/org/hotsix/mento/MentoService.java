@@ -11,7 +11,7 @@ public interface MentoService {
 	
 	public PageMaker totalCount(Criteria cri)throws Exception;
 	
-	public PageMaker countWaiting(Criteria cri)throws Exception;
+	public PageMaker mentoCount(Criteria cri)throws Exception;
 	
 	public void registMento(int MentoNo)throws Exception;
 

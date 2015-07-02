@@ -9,7 +9,7 @@
 <title>멘토 관리</title>
 <style>
 .table th,td{text-align: center;}
-test
+
 
 </style>
 </head>
@@ -37,7 +37,8 @@ test
 			<input type='hidden' name='displayPageNum' value="${cri.displayPageNum}">
 			
 			
-			<div class="pull-left">(총 회원수 : ${pageMaker.totalCount},&nbsp;대기회원 :<span style="color:#3399FF; font-weight:bold">${countWaiting.countWaiting }</span>,&nbsp;탈퇴 : 0)
+			<div class="pull-left">
+			(총 회원수 : ${pageMaker.totalCount},&nbsp;대기회원 :<span style="color:#3399FF; font-weight:bold">${mentoCount.countWaiting}</span>,&nbsp;탈퇴 : 0)
 			</div>
 			<div class="pull-right">
 			
@@ -74,7 +75,7 @@ test
                   <tbody>
                      <c:forEach items="${list}" var="list">
                       <tr>
-                           <td><input class="selcCk" id="${list.mentoNo}" class="checkbox1" type="checkbox"></td>
+                           <td><input value="${list.mentoNo}" name="checkbox_mento" type="checkbox"></td>
                            <td>${list.id }</td>
                            <td>${list.name}</td>
                            <td>${list.nickname }</td>
@@ -82,8 +83,14 @@ test
                            <td>${list.menteeId }</td>
                            <td>${list.regdate }</td>
                            <td>${list.logdate}</td>
-                           <td><c:if test="${list.status == false}"><span style="color:#3399FF; font-weight:bold">대기중</span></c:if>
-                           	<c:if test="${list.status == true}">멘토등록</c:if></td>
+                           <td>
+                           <c:if test="${list.status == '2'}">멘토등록</c:if>
+                           <c:if test="${list.status == '0'}">
+                           	<span style="color:#BABABA; font-weight:bold">멘토거절</span></c:if>
+                           <c:if test="${list.status == '1'}">
+                           <span style="color:#3399FF; font-weight:bold">대기중</span>
+                           </c:if>                  
+                           </td>
                        </tr>
                      </c:forEach>
                   </tbody>
@@ -96,7 +103,7 @@ test
                 <div id="pagination" class="col-sm-3">
                   <br>
                   <input id="registBtn" type="button" class="btn btn-default" value='선택등록'>
-              	  <input id="rejectBtn" type="button" class="btn btn-default" value='선택거절'>
+              	 <input id="rejectBtn" type="button" class="btn btn-default" value='선택거절'>
  				</div>
                <div class="col-sm-9">
                   <ul class="pager pagenation">
@@ -122,22 +129,21 @@ test
 </div>
 <script src="http://code.jquery.com/jquery-1.11.3.js"></script>
 <script>
-$('.selcCk').on(click){
+$(document).ready(function(){
+	var jobForm = $("#jobForm");
 	
-}
-
 $(".pager li a").on("click",function(event){
 	event.preventDefault();
 	var targetPageNum = $(this).attr("href");
-	var jobForm = $("#jobForm");
+	
 	jobForm.find("input[name='mentoNo']").remove();
 	jobForm.find("[name='page']").val(targetPageNum);
-	jobForm.attr("action", "/mentee/list").attr("method","get");
+	jobForm.attr("action", "/mento/list").attr("method","get");
 	jobForm.submit();
 });
 
 $("#searchBtn").on("click",function(event){
-	var jobForm = $("#jobForm");
+	
 	jobForm.find("input[name='mentoNo']").remove();
 	jobForm.find("[name='page']").val(1);
 	jobForm.attr("action","/mento/list").attr("method","get");
@@ -146,28 +152,45 @@ $("#searchBtn").on("click",function(event){
 
 $('#select_all').change(function() {
     if(this.checked) { // check select status
-        $('.checkbox1').each(function() { //loop through each checkbox
+        $('input[name="checkbox_mento"]').each(function() { //loop through each checkbox
             this.checked = true;  //select all checkboxes with class "checkbox1"               
         });
     }else{
-        $('.checkbox1').each(function() { //loop through each checkbox
+        $('input[name="checkbox_mento"]').each(function() { //loop through each checkbox
             this.checked = false; //deselect all checkboxes with class "checkbox1"                       
         });         
     }
 });
 
-$('#registBtn').on("click",function(event){
-	var targetForm = $("#jobForm");
-	if( $(":checkbox[class='checkbox1']:checked").length==0 ){
-	    alert("등록할 멘토를 체크해주세요.");
-	    return;
-	  }
+	
+	
+	$("input[name=checkbox_mento]:checked").each(function(){
+		var len = this.length;		//체크박스의 전체개수
+		var chkRow = "";			 //체크된 체크박스의 value를 담기위한 변수
+		var chkCnt = 0;			 //체크된 체크박스의 갯수
+		var chkLast ='';		 //체크된 체크박스중 마지막 체크박스의 인덱스를 담기위한 변수
+		var rowid = ''; 		 //체크된 체크박스의 모든 value값을 담음
+		var cnt = '';
+	for(var i=0; i <len; i++){
+		chkRow = this[i].value;
+		
+		if(chkCnt ==1){					//체크된 체크박스의 갯수가 한 개 일때,
+			rowid += "'"+chkRow+"'"; 	//value의 뒤에 콤마가 붙지않게	
+		}else{
+			if(i ==chkLast){			//체크된 체크 박스 중 마지막 체크박스에
+				rowid += "'"+chkRow+"'";	// 콤마가 붙지않게
+			}else{
+				rowid +="'"+chkRow+"',";	//value 뒤에 콤마가 붙게
+			}
+		}
+		cnt++;
+		chkRow = ''; //초기화
+		console.log(rowid);
+}
 });
- /* 1.체크박스 확인 
-	2.확인한뒤 status 상태 true로 변환
-	3.창으로 확인
-	4.페이지 새로고침
-	*/
+});
+
+	
 </script>
 <%@include file="../include/footer.jsp"%>
 </html>
