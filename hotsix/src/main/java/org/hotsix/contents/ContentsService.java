@@ -2,6 +2,8 @@ package org.hotsix.contents;
 
 import java.util.List;
 
+import org.hotsix.page.Criteria;
+import org.hotsix.page.PageMaker;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -15,5 +17,9 @@ public interface ContentsService {
 	
 	public List<ContentsVO> list() throws Exception;
 	
-	public ContentsVO update(ContentsVO vo) throws Exception;
+	public void update(ContentsVO vo) throws Exception;
+	
+	public List<ContentsVO> listPaging(Criteria cri) throws Exception;
+	
+	public PageMaker countPaging(Criteria cri)throws Exception;
 }

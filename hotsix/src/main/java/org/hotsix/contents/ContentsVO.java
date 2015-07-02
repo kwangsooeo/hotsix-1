@@ -19,8 +19,6 @@ import org.hotsix.job.JobVO;
      
      )
  */
-
-
 public class ContentsVO{
 	
 	private int jobNo;

@@ -10,6 +10,7 @@ public interface QnAService {
 	public List<QnAVO> qnaList(Criteria cri) throws Exception;
 	public void qnaRemove(int qnaNo) throws Exception;
 	public void qnaRemoveWith(int qnaNo) throws Exception;
+	public QnAVO qnaRead(int qnaNo) throws Exception;
 	
 	public void qnaRegist(QnAVO qvo) throws Exception;
 	public void qnaModify(QnAVO qvo) throws Exception;
