@@ -1,6 +1,9 @@
 package org.hotsix.notice;
 
+import java.util.Arrays;
 import java.util.Date;
+
+import org.springframework.web.multipart.MultipartFile;
 
 public class NoticeVO {
 
@@ -8,10 +11,26 @@ public class NoticeVO {
 		private int viewCnt;
 		private String title;
 		private String filename;
+		private byte[] fileDate;
 		private String contents;
 		private Date regdate;
+		MultipartFile file;
 		
 		
+		
+		
+		public MultipartFile getFile() {
+			return file;
+		}
+		public void setFile(MultipartFile file) {
+			this.file = file;
+		}
+		public byte[] getFileDate() {
+			return fileDate;
+		}
+		public void setFileDate(byte[] fileDate) {
+			this.fileDate = fileDate;
+		}
 		public int getNoticeNo() {
 			return noticeNo;
 		}
@@ -48,12 +67,15 @@ public class NoticeVO {
 		public void setRegdate(Date regdate) {
 			this.regdate = regdate;
 		}
-		
 		@Override
 		public String toString() {
 			return "NoticeVO [noticeNo=" + noticeNo + ", viewCnt=" + viewCnt
 					+ ", title=" + title + ", filename=" + filename
-					+ ", contents=" + contents + ", regdate=" + regdate + "]";
+					+ ", fileDate=" + Arrays.toString(fileDate) + ", contents="
+					+ contents + ", regdate=" + regdate + ", file=" + file
+					+ "]";
 		}
+		
+		
 	
 }

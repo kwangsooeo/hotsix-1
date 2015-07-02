@@ -10,6 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 @Controller
 @RequestMapping("/notice/*")
@@ -36,8 +38,16 @@ public class NoticeController {
 	}
 	
 	@RequestMapping(value="/noticeRegist",method=RequestMethod.POST)
-	public String registPOST(@ModelAttribute("cri")Criteria cri, NoticeVO vo,Model model)throws Exception{
+	public String registPOST(@ModelAttribute("cri")Criteria cri, NoticeVO vo,Model model,@RequestParam("file") CommonsMultipartFile[] file)throws Exception{
+	if(file != null && file.length > 0){
+		for(CommonsMultipartFile commonsMultipartFile : file){
+			vo.setFilename(commonsMultipartFile.getOriginalFilename());
+			vo.setFileDate(commonsMultipartFile.getBytes());
+			
+		}
 		
+		
+	} 	
 		logger.info("registPOST...");
 		logger.info(vo.toString());
 		
@@ -59,8 +69,15 @@ public class NoticeController {
 		
 	}
 	@RequestMapping(value="/noticeUpdate",method=RequestMethod.POST)
-	public String modPOST(@ModelAttribute("cri")Criteria cri,NoticeVO vo,Model model)throws Exception{
-		
+	public String modPOST(@ModelAttribute("cri")Criteria cri,NoticeVO vo,Model model,@RequestParam("file") CommonsMultipartFile[] file)throws Exception{
+		if(file != null && file.length > 0){
+			for(CommonsMultipartFile commonsMultipartFile : file){
+				vo.setFilename(commonsMultipartFile.getOriginalFilename());
+				vo.setFileDate(commonsMultipartFile.getBytes());
+			}
+			
+			
+		}
 		service.modify(vo);
 		
 		return "/suc/noticeSuccess";

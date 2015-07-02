@@ -29,7 +29,7 @@
                <table id="example2" class="table table-bordered table-hover">
                   <thead>
                   
-		<form method="post">
+		<form method="post" enctype="multipart/form-data" name="fileName">
 		<div class="form-group">
 			<label class="col-sm-2 col-sm-2 control-label">제목</label>
 			<div class="clo-sm-10">
@@ -49,10 +49,10 @@
 		<div class="form-group">
 			<label class="col-sm-2 col-sm-2 control-label">첨부파일</label>
 			<div class="clo-sm-10">
-				<textarea class="form-control" name="fileName" rows="5"></textarea>
-
+				<input type="file" name="fileName">
 			</div>
 		</div>
+		
 
 		<div class="showback">
 			<button class="btn btn-theme" type="submit">저장</button>
