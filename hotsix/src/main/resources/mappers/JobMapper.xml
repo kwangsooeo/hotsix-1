@@ -10,15 +10,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	limit #{pageStart}, #{perPageNum}
 </select>
 
-
- <sql id="searchSQL">
-    <if test="searchType != null">
-  	<if test="searchType eq 'jn'.toString()">
+<sql id="searchSQL">
+  <if test="searchType != null">
+  <if test="searchType eq 'jn'.toString()">
   	and jobname like CONCAT('%',#{keyword},'%')
-  	</if>
+  </if>
   	<if test="searchType eq 'd'.toString()">
   	and  depth like CONCAT('%',#{keyword},'%')
-  	</if>
+  </if>
   </if>  
-  </sql>
+</sql>
 </mapper>
