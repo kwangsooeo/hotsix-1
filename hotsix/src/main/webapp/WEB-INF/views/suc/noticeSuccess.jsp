@@ -7,6 +7,8 @@
 <title>Insert title here</title>
 </head>
 
+test
+
 	<form id="noticeForm" action="/notice/list" method="get" >
 	<input type="hidden" name="page" value="${cri.page }">
 	<input type="hidden" name="perPageNum" value="${cri.perPageNum }">
