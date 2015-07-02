@@ -97,7 +97,7 @@
 			    }else if(targetval == 'menteePage'){
 			        location.href="/mentee/list";
 			    }else if(targetval == 'contents'){
-			        location.href="/contents/contentsList";
+			        location.href="/contents/contentsListCri";
 			    }else if(targetval == 'jobManage'){
 			        location.href="/job/list";
 			    }

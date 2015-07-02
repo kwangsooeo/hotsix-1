@@ -2,10 +2,12 @@ package org.hotsix.contents;
 
 import javax.inject.Inject;
 
+import org.hotsix.page.Criteria;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -17,13 +19,7 @@ public class ContentsController {
 	
 	@Inject
 	private ContentsService service;
-	
-	//리스트 조회
-	@RequestMapping(value="/contentsList", method=RequestMethod.GET)
-	public void contentsList(ContentsVO vo, Model model)throws Exception{
-		logger.info(vo.toString());
-		model.addAttribute("list",service.list());
-	}
+
 	
 	//등록
 	@RequestMapping(value = "/contentsRegist" , method = RequestMethod.GET)
@@ -41,12 +37,7 @@ public class ContentsController {
 		return "/contents/success";
 	}
 	
-	//조회 페이지
-	@RequestMapping(value="/contentsRead", method = RequestMethod.GET)
-	public void read(int jobNo, Model model) throws Exception{
-		model.addAttribute(service.readContents(jobNo));
-	}
-	
+
 	//삭제
 	@RequestMapping(value="/contentsRemove", method = RequestMethod.POST)
 	public String remove(ContentsVO vo)throws Exception{
@@ -58,15 +49,35 @@ public class ContentsController {
 		return "/contents/success";
 	}
 	
-	//수정
-	@RequestMapping(value="/contentsModify", method = RequestMethod.GET)
-	public String update(ContentsVO vo, Model model)throws Exception{
+	//페이징
+	@RequestMapping(value="/contentsListCri", method = RequestMethod.GET)
+	public void listPaging(@ModelAttribute("cri")Criteria cri , Model model)throws Exception{
+		
+		model.addAttribute("list", service.listPaging(cri));
+		model.addAttribute("pageMaker",service.countPaging(cri).calcPage(cri));
+	}
+	
+	//페이징-조회
+	@RequestMapping(value="/contentsReadPage", method=RequestMethod.GET)
+	public void readPaging(@ModelAttribute("cri")Criteria cri, Model model)throws Exception{
+		
+		model.addAttribute(service.readContents(cri.getContentsNo()));
+	}
+	
+	//페이징-수정(GET)
+	@RequestMapping(value="/contentsModify", method=RequestMethod.GET)
+	public void modifyGET(@ModelAttribute("cri")Criteria cri, ContentsVO vo, Model model)throws Exception{
+		
+		model.addAttribute(service.readContents(cri.getPage()));
+	}
+	
+	//페이징-수정(POST)
+	@RequestMapping(value="/contentsModify", method=RequestMethod.POST)
+	public String modifyPOST(@ModelAttribute("cri")Criteria cri, ContentsVO vo, Model model)throws Exception{
 		
 		service.update(vo);
 		
 		return "/contents/success";
 	}
-	
-	
 	
 }

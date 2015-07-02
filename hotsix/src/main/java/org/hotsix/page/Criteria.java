@@ -8,23 +8,30 @@ public class Criteria {
 	private int displayPageNum = 10;
 	private int nextPage;
 	
+	private int contentsNo;
 	private int qnaNo;
 	private int mentoNo;
 	private int NoticeNo;
 	private int menteeNo;
-	private int jobNo;
 	
+	public int getContentsNo() {
+		return contentsNo;
+	}
+	public void setContentsNo(int contentsNo) {
+		this.contentsNo = contentsNo;
+	}
+	public int getMenteeNo() {
+		return menteeNo;
+	}
+	public void setMenteeNo(int menteeNo) {
+		this.menteeNo = menteeNo;
+	}
 	private int parent;
 	private String searchType;
 	private String keyword;
 	
 	
-	public int getJobNo() {
-		return jobNo;
-	}
-	public void setJobNo(int jobNo) {
-		this.jobNo = jobNo;
-	}
+	
 	public int getNoticeNo() {
 		return NoticeNo;
 	}
@@ -91,12 +98,6 @@ public class Criteria {
 	}
 	public void setQnaNo(int qnaNo) {
 		this.qnaNo = qnaNo;
-	}
-	public int getMenteeNo() {
-		return menteeNo;
-	}
-	public void setMenteeNo(int menteeNo) {
-		this.menteeNo = menteeNo;
 	}
 	@Override
 	public String toString() {
