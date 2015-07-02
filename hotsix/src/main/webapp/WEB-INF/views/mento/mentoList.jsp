@@ -9,7 +9,7 @@
 <title>멘토 관리</title>
 <style>
 .table th,td{text-align: center;}
-
+test
 
 </style>
 </head>
