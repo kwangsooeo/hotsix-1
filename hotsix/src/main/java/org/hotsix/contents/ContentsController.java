@@ -65,19 +65,19 @@ public class ContentsController {
 	}
 	
 	//페이징-수정(GET)
-	@RequestMapping(value="/contentsModify", method=RequestMethod.GET)
+	@RequestMapping(value="/contentsModifyPage", method=RequestMethod.GET)
 	public void modifyGET(@ModelAttribute("cri")Criteria cri, ContentsVO vo, Model model)throws Exception{
 		
-		model.addAttribute(service.readContents(cri.getPage()));
+		model.addAttribute(service.readContents(vo.getContentsNo()));
 	}
 	
 	//페이징-수정(POST)
-	@RequestMapping(value="/contentsModify", method=RequestMethod.POST)
+	@RequestMapping(value="/contentsModifyPage", method=RequestMethod.POST)
 	public String modifyPOST(@ModelAttribute("cri")Criteria cri, ContentsVO vo, Model model)throws Exception{
 		
 		service.update(vo);
 		
-		return "/contents/success";
+		return "/suc/contentsSuccess";
 	}
 	
 }

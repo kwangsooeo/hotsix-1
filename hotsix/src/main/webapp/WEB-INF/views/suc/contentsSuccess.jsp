@@ -7,10 +7,19 @@
 <title>Insert title here</title>
 </head>
 <body>
+
+<form id='jobForm' action="/contents/contentsListCri" method="get">
+	<input type='hidden' name='contentsNo' value='${contentsVO.contentsNo }'>
+	<input type='hidden' name='page' value='${cri.page }'>
+	<input type='hidden' name='perPageNum' value='${cri.perPageNum }'>
+	<input type='hidden' name='displayPageNum' value='${cri.displayPageNum }'>
+</form>
+
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
 	<script>
 		alert("process success");
 		
-		self.location="/contents/contentsList";
+		$('#jobForm').submit();
 	</script>
 
 </body>
