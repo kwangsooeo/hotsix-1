@@ -20,6 +20,8 @@
 		alert("process success");
 		
 		$('#jobForm').submit();
+		
+		self.location="/contents/contentsListCri";
 	</script>
 
 </body>

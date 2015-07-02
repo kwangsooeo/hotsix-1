@@ -17,7 +17,7 @@ public interface ContentsMapper {
 	public void regContents(ContentsVO contents)throws Exception;
 	
 	//삭제
-	@Delete("delete from tbl_contents where jobNo=#{jobNo}")
+	@Delete("delete from tbl_contents where contentsNo=#{contentsNo}")
 	public void deleteContents(ContentsVO vo)throws Exception;
 	
 	//조회

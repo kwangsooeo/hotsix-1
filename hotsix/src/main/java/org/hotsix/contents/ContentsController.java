@@ -28,7 +28,7 @@ public class ContentsController {
 	}
 	
 	@RequestMapping(value="/contentsRegist", method = RequestMethod.POST)
-	public String registPOST(ContentsVO contents, Model model)throws Exception{
+	public String registPOST(@ModelAttribute("cri")Criteria cri, ContentsVO contents, Model model)throws Exception{
 		logger.info("POST 방식으로 등록");
 		logger.info(contents.toString());
 		
@@ -40,13 +40,13 @@ public class ContentsController {
 
 	//삭제
 	@RequestMapping(value="/contentsRemove", method = RequestMethod.POST)
-	public String remove(ContentsVO vo)throws Exception{
+	public String remove(@ModelAttribute("cri")Criteria cri,ContentsVO vo)throws Exception{
 		
 		logger.info("제거 완료");
 		
 		service.deleteContents(vo);
 		
-		return "/contents/success";
+		return "/suc/contentsSuccess[;";
 	}
 	
 	//페이징
