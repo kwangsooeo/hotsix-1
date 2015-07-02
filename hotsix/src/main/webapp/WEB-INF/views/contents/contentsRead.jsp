@@ -16,6 +16,8 @@ pageEncoding="UTF-8"%>
 
 </head>
 
+<body>
+
 <div class="content-wrapper">
 
         <!-- Content Header (Page header) -->
@@ -106,9 +108,13 @@ pageEncoding="UTF-8"%>
 
       </div><!-- /.content-wrapper -->
 
-      
 
-      
+	<form id='jobForm'>
+
+		<input type='hidden' name='contentsNo' value='${contentsVO.contentsNo }'>
+
+	</form>
+	
 
       <!-- Control Sidebar -->      
 
@@ -439,10 +445,31 @@ pageEncoding="UTF-8"%>
       <div class='control-sidebar-bg'></div>
 
     </div>
+    
+    
+	<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+	<script>
+		$(document).ready(function() {
+			var jobForm = $("#jobForm");
 
+			$("#listBtn").click(function() {
+				self.location = "/contents/contentsList";
+			});
 
+			$("#modifyBtn").click(function() {
+				jobForm.attr("action", "/contents/contentsModify");
+				jobForm.attr("method", "get");
+				jobForm.submit();
+			});
 
-
+			$("#deleteBtn").click(function() {
+				jobForm.attr("action", "/contents/contentsRemove");
+				jobForm.attr("method", "post");
+				jobForm.submit();
+			});
+		});
+	</script>
+	</body>
 <%@include file="../include/footer.jsp"%>
 
 </html>

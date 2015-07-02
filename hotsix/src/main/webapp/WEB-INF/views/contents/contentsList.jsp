@@ -30,7 +30,6 @@
 						<table id="example2" class="table table-bordered table-hover">
 							<thead>
 								<tr>
-									<th>JobNo</th>
 									<th>ContentsNo</th>
 									<th>title</th>
 									<th>Registration Date</th>
@@ -39,7 +38,6 @@
 							<tbody >
 								<c:forEach items="${list}" var="list">
 									<tr class="task-list">
-										<th>${list.jobNo }</th>
 										<th>${list.contentsNo}</th>
 										<th><span id="${list.jobNo }">${list.title}</span></th>
 										<th>${list.regdate }</th>

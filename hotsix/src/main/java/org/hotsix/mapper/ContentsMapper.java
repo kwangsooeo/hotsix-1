@@ -7,6 +7,8 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 import org.hotsix.contents.ContentsVO;
+import org.hotsix.page.Criteria;
+import org.hotsix.page.PageMaker;
 
 public interface ContentsMapper {
 	
@@ -19,15 +21,23 @@ public interface ContentsMapper {
 	public void deleteContents(ContentsVO vo)throws Exception;
 	
 	//조회
-	@Select("select jobNo, contentsNo, title, link from tbl_contents where jobNo=#{jobNo}")
+	@Select("select jobNo, contentsNo, title, link from tbl_contents where contentsNo=#{no}")
 	public ContentsVO read(Integer no)throws Exception;	
 	
 	//리스트
-	@Select("select jobNo, contentsNo, link, title, regdate from tbl_contents where contentsNo > 0 order by regdate desc limit 0, 10")
+	@Select("select contesnt, contentsNo,title, regdate from tbl_contents where contentsNo > 0 order by regdate desc")
 	public List<ContentsVO> list()throws Exception;
 	
 	//수정
-	@Update("update tbl_contents set title=#{title}, link=#{link} where jobNo=#{jobNo}")
-	public ContentsVO update(ContentsVO vo)throws Exception;
+	@Update("update tbl_contents set title=#{title}, link=#{link} where contentsNo=#{contentsNo}")
+	public void update(ContentsVO vo)throws Exception;
+	
+	//페이징
+	@Select("select contentsNo, title, regdate from tbl_contents where contentsNo > 0 order by contentsNo desc limit #{pageStart}, #{perPageNum}")
+	public List<ContentsVO> listPaging(Criteria cri)throws Exception;
+	
+	//전체 게시물 카운트
+	@Select("select count(contentsNo) totalCount from tbl_contents where contentsNo > 0")
+	public PageMaker countPaging(Criteria cri)throws Exception;
 	
 }

@@ -5,6 +5,8 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.hotsix.mapper.ContentsMapper;
+import org.hotsix.page.Criteria;
+import org.hotsix.page.PageMaker;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -40,11 +42,22 @@ public class ContentsServiceImpl implements ContentsService {
 	}
 
 	@Override
-	public ContentsVO update(ContentsVO vo) throws Exception {
+	public void update(ContentsVO vo) throws Exception {
 		// TODO Auto-generated method stub
 		
-		return mapper.update(vo);
+		mapper.update(vo);
 	}
 
+	@Override
+	public List<ContentsVO> listPaging(Criteria cri) throws Exception {
+		// TODO Auto-generated method stub
+		return mapper.listPaging(cri);
+	}
+	
+	@Override
+	public PageMaker countPaging(Criteria cri) throws Exception {
+		// TODO Auto-generated method stub
+		return mapper.countPaging(cri);
+	}
 
 }
