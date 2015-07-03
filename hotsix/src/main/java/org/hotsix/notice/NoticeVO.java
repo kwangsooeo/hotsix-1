@@ -10,26 +10,41 @@ public class NoticeVO {
 		private int noticeNo;
 		private int viewCnt;
 		private String title;
-		private String filename;
-		private byte[] fileDate;
+		
+		private String fileName;
+		private String fileType;
+		private long fileSize;
+		private String dataURL;
 		private String contents;
 		private Date regdate;
-		MultipartFile file;
 		
 		
 		
 		
-		public MultipartFile getFile() {
-			return file;
+		
+		public String getFileName() {
+			return fileName;
 		}
-		public void setFile(MultipartFile file) {
-			this.file = file;
+		public void setFileName(String fileName) {
+			this.fileName = fileName;
 		}
-		public byte[] getFileDate() {
-			return fileDate;
+		public String getFileType() {
+			return fileType;
 		}
-		public void setFileDate(byte[] fileDate) {
-			this.fileDate = fileDate;
+		public void setFileType(String fileType) {
+			this.fileType = fileType;
+		}
+		public long getFileSize() {
+			return fileSize;
+		}
+		public void setFileSize(long fileSize) {
+			this.fileSize = fileSize;
+		}
+		public String getDataURL() {
+			return dataURL;
+		}
+		public void setDataURL(String dataURL) {
+			this.dataURL = dataURL;
 		}
 		public int getNoticeNo() {
 			return noticeNo;
@@ -49,12 +64,7 @@ public class NoticeVO {
 		public void setTitle(String title) {
 			this.title = title;
 		}
-		public String getFilename() {
-			return filename;
-		}
-		public void setFilename(String filename) {
-			this.filename = filename;
-		}
+		
 		public String getContents() {
 			return contents;
 		}
@@ -67,13 +77,14 @@ public class NoticeVO {
 		public void setRegdate(Date regdate) {
 			this.regdate = regdate;
 		}
+		
 		@Override
 		public String toString() {
 			return "NoticeVO [noticeNo=" + noticeNo + ", viewCnt=" + viewCnt
-					+ ", title=" + title + ", filename=" + filename
-					+ ", fileDate=" + Arrays.toString(fileDate) + ", contents="
-					+ contents + ", regdate=" + regdate + ", file=" + file
-					+ "]";
+					+ ", title=" + title + ", fileName=" + fileName
+					+ ", fileType=" + fileType + ", fileSize=" + fileSize
+					+ ", dataURL=" + dataURL + ", contents=" + contents
+					+ ", regdate=" + regdate + "]";
 		}
 		
 		

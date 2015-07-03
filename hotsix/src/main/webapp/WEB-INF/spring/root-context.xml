@@ -24,6 +24,13 @@
 		<property name="typeAliasesPackage" value="org.hotsix.mapper"></property>
 		<property name="mapperLocations" value="classpath:mappers/**/*Mapper.xml"/>
 	</bean>
+	
+	<!--uploadDirResource  -->
+    <bean id = "fileSystemResource" class = "org.springframework.core.io.FileSystemResource">
+    <constructor-arg>
+    <value>C://zzz//upload</value>
+    </constructor-arg>
+    </bean>
 
     <mybatis-spring:scan base-package="org.hotsix.mapper" />
 	
