@@ -6,6 +6,7 @@
 <%@include file="../include/header.jsp"%>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+
 </head>
 <body>
 	<div class="content-wrapper">
@@ -29,7 +30,7 @@
                <table id="example2" class="table table-bordered table-hover">
                   <thead>
                   
-		<form method="post" enctype="multipart/form-data" name="fileName">
+	<form method="post" action="/notice/noticeRegist" enctype="multipart/form-data">
 		<div class="form-group">
 			<label class="col-sm-2 col-sm-2 control-label">제목</label>
 			<div class="clo-sm-10">
@@ -49,16 +50,20 @@
 		<div class="form-group">
 			<label class="col-sm-2 col-sm-2 control-label">첨부파일</label>
 			<div class="clo-sm-10">
-				<input type="file" name="fileName">
+				<input type="file" name="file" >
 			</div>
 		</div>
 		
 
 		<div class="showback">
+		
 			<button class="btn btn-theme" type="submit">저장</button>
+			 
 		</div>
 
 	</form>
+	
+	
 	
                   </thead>
                </table>
@@ -74,6 +79,12 @@
 </div>
 	
 	<!-- /.content-wrapper -->
+	 
+  <script>
+  function addFilePath(msg){
+	  alert(msg);
+  }
+  </script>
 </body>
 <%@include file="../include/footer.jsp"%>
 </html>

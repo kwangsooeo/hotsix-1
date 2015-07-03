@@ -16,7 +16,7 @@ public interface NoticeMapper {
 	@Select("select now()")
 	public String noticeTime()throws Exception;
 	
-	@Insert("insert into tbl_notice(title,contents,filename) values(#{title},#{contents},#{filename})")
+	@Insert("insert into tbl_notice(title,contents,fileName) values(#{title},#{contents},#{fileName})")
 	public void noticeCreat(NoticeVO vo) throws Exception;
 	
 	@Select("select noticeNo,title,contents,regdate,viewCnt from tbl_notice where noticeNo=#{noticeNo}")
@@ -28,7 +28,7 @@ public interface NoticeMapper {
 	@Delete("delete from tbl_notice where noticeNo=#{noticeNo}")
 	public void noticeDelete(Integer noticeNo) throws Exception;
 	
-	@Update("update tbl_notice set title=#{title},contents=#{contents},filename=#{filename} where noticeNo=#{noticeNo}")
+	@Update("update tbl_notice set title=#{title},contents=#{contents},fileName=#{fileName} where noticeNo=#{noticeNo}")
 	public void noticeUpdate(NoticeVO vo) throws Exception;
 
 	@Select("select noticeNo,title,contents,regdate,viewCnt from tbl_notice where noticeNo > 0 order by noticeNo desc limit #{pageStart},#{pageNum}")

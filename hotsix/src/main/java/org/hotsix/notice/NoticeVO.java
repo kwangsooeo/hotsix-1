@@ -19,9 +19,6 @@ public class NoticeVO {
       private Date regdate;
       
       
-      
-      
-      
       public String getFileName() {
          return fileName;
       }
