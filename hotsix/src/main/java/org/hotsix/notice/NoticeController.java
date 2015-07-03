@@ -1,5 +1,6 @@
 package org.hotsix.notice;
 
+import javax.annotation.Resource;
 import javax.inject.Inject;
 
 import org.hotsix.page.Criteria;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 @Controller
@@ -22,12 +24,15 @@ public class NoticeController {
 	@Inject
 	private NoticeService service;
 	
+	@Resource(name="uploadPath")
+	private String uploadPath;
+	
 
 	@RequestMapping(value="/list",method=RequestMethod.GET)
 	public String noticeList(@ModelAttribute("cri")Criteria cri,Model model)throws Exception{
 		model.addAttribute("list", service.noticeList(cri));
 		model.addAttribute("pageMaker", service.countPaging(cri).calcPage(cri));
-		
+		 
 		return "/notice/noticeList";
 	}
 	
@@ -38,16 +43,8 @@ public class NoticeController {
 	}
 	
 	@RequestMapping(value="/noticeRegist",method=RequestMethod.POST)
-	public String registPOST(@ModelAttribute("cri")Criteria cri, NoticeVO vo,Model model,@RequestParam("file") CommonsMultipartFile[] file)throws Exception{
-	if(file != null && file.length > 0){
-		for(CommonsMultipartFile commonsMultipartFile : file){
-			vo.setFilename(commonsMultipartFile.getOriginalFilename());
-			vo.setFileDate(commonsMultipartFile.getBytes());
-			
-		}
-		
-		
-	} 	
+	public String registPOST(@ModelAttribute("cri")Criteria cri, NoticeVO vo,Model model,MultipartFile file)throws Exception{
+	
 		logger.info("registPOST...");
 		logger.info(vo.toString());
 		
@@ -73,7 +70,7 @@ public class NoticeController {
 		if(file != null && file.length > 0){
 			for(CommonsMultipartFile commonsMultipartFile : file){
 				vo.setFilename(commonsMultipartFile.getOriginalFilename());
-				vo.setFileDate(commonsMultipartFile.getBytes());
+				
 			}
 			
 			
