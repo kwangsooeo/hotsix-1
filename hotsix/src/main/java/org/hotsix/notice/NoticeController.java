@@ -41,8 +41,9 @@ public class NoticeController {
 	@Inject
 	FileSystemResource file;
 	
+	
 	@Inject
-	private NoticeService service;
+	private NoticeService service;   
 	
 	@Resource(name="uploadPath")
 	private String uploadPath;
