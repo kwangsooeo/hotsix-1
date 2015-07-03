@@ -8,6 +8,7 @@ import java.text.DecimalFormat;
 import java.util.Calendar;
 import java.util.UUID;
 
+import javax.activation.FileTypeMap;
 import javax.annotation.Resource;
 import javax.imageio.ImageIO;
 import javax.inject.Inject;
@@ -25,10 +26,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 @Controller
@@ -61,14 +60,14 @@ public class NoticeController {
 	@RequestMapping(value = "/noticeRegist", method = RequestMethod.POST)
 	public String registPOST(@ModelAttribute("cri") Criteria cri,
 			MultipartFile file, NoticeVO vo, Model model) throws Exception {
-		System.out.println("µé¾î¿È");
+		logger.info("µé¾î¿È");
 		logger.info("registPOST...");
-		System.out.println(vo.toString());
+		logger.info(vo.toString());
 
 		
-		System.out.println("originalName: " + file.getOriginalFilename());
-		System.out.println("size: " + file.getSize());
-		System.out.println("contentType: " + file.getContentType());
+		logger.info("originalName: " + file.getOriginalFilename());
+		logger.info("size: " + file.getSize());
+		logger.info("contentType: " + file.getContentType());
 
 		vo.setFileName(file.getOriginalFilename());
 		vo.setFileSize(file.getSize());
@@ -97,7 +96,7 @@ public class NoticeController {
 	}
 
 	@RequestMapping(value = "/noticeRead", method = RequestMethod.GET)
-	public void read(@ModelAttribute("cri") Criteria cri, Integer noticeNo,
+	public void read(@ModelAttribute("cri") Criteria cri, Integer noticeNo, NoticeVO vo,
 			Model model) throws Exception {
 		model.addAttribute(service.noticeRead(noticeNo));
 
@@ -112,15 +111,25 @@ public class NoticeController {
 	}
 
 	@RequestMapping(value = "/noticeUpdate", method = RequestMethod.POST)
-	public String modPOST(@ModelAttribute("cri") Criteria cri, NoticeVO vo,
+	public String modPOST(@ModelAttribute("cri") Criteria cri, NoticeVO vo,MultipartFile file,
 			Model model) throws Exception {
 
-		service.modify(vo);
+		logger.info("originalName: " + file.getOriginalFilename());
+		logger.info("size: " + file.getSize());
+		logger.info("contentType: " + file.getContentType());
 
+		vo.setFileName(file.getOriginalFilename());
+		vo.setFileSize(file.getSize());
+		vo.setFileType(file.getContentType());
+		String savedName = uploadFile(file.getOriginalFilename(),
+				file.getBytes());
+		service.modify(vo);
+		model.addAttribute("savedName", savedName);
 		return "/suc/noticeSuccess";
 
 	}
 
+	
 	@RequestMapping(value = "/del", method = RequestMethod.POST)
 	public String delete(@ModelAttribute("cri") Criteria cri) throws Exception {
 
@@ -196,8 +205,9 @@ public class NoticeController {
 			mimeType = MediaType.IMAGE_PNG;
 		} else if (suffix.equalsIgnoreCase("gif")) {
 			mimeType = MediaType.IMAGE_GIF;
-		}
+		} 
 
+		
 		headers.setContentType(mimeType);
 
 		return new ResponseEntity<byte[]>(IOUtils.toByteArray(in), headers,

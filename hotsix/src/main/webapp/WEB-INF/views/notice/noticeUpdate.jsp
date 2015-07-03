@@ -72,7 +72,7 @@
 	<div class="form-group">
 		<label class="col-sm-2 col-sm-2 control-label">첨부파일</label>
 		<div class="col-sm-10">
-			<input type="file" value="${noticeVO.fileName }" name="fileName">
+			<input type="file" value="${noticeVO.fileName }" name="file">
 		</div>
 	</div>
 	</form>
@@ -111,5 +111,9 @@
 		});
 	
 	</script>
+	<script>
+  function addFilePath(msg){
+	  alert(msg);
+  }
 <%@include file="../include/footer.jsp"%>
 </html>

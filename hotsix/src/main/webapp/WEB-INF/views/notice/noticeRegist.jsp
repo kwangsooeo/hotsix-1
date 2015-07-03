@@ -6,7 +6,9 @@
 <%@include file="../include/header.jsp"%>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-
+<style>
+iframe{ width:0px; height:0px; border:0px}
+</style>
 </head>
 <body>
 	<div class="content-wrapper">
@@ -30,7 +32,7 @@
                <table id="example2" class="table table-bordered table-hover">
                   <thead>
                   
-	<form method="post" action="/notice/noticeRegist" enctype="multipart/form-data">
+	<form method="post" action="/notice/noticeRegist" enctype="multipart/form-data" target="zeroFrame">
 		<div class="form-group">
 			<label class="col-sm-2 col-sm-2 control-label">제목</label>
 			<div class="clo-sm-10">
@@ -51,6 +53,7 @@
 			<label class="col-sm-2 col-sm-2 control-label">첨부파일</label>
 			<div class="clo-sm-10">
 				<input type="file" name="file" >
+				
 			</div>
 		</div>
 		
@@ -62,9 +65,6 @@
 		</div>
 
 	</form>
-	
-	
-	
                   </thead>
                </table>
             </div>

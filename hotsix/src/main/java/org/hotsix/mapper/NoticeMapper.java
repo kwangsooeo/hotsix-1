@@ -19,10 +19,10 @@ public interface NoticeMapper {
 	@Insert("insert into tbl_notice(title,contents,fileName) values(#{title},#{contents},#{fileName})")
 	public void noticeCreat(NoticeVO vo) throws Exception;
 	
-	@Select("select noticeNo,title,contents,regdate,viewCnt from tbl_notice where noticeNo=#{noticeNo}")
+	@Select("select * from tbl_notice where noticeNo=#{noticeNo}")
 	public NoticeVO	noticeRead(Integer noticeNo) throws Exception;
 	
-//	@Select("select noticeNo,title,contents,regdate,viewCnt from tbl_notice where noticeNo > 0 order by noticeNo desc limit 0,10")
+//	@Select("select * from tbl_notice where noticeNo > 0 order by noticeNo desc limit 0,10")
 	public List<NoticeVO> noticeList(Criteria cri) throws Exception;
 	
 	@Delete("delete from tbl_notice where noticeNo=#{noticeNo}")
