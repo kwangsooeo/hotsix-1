@@ -27,7 +27,7 @@
  
   
   
- <select id="menteeCri" resultType="org.hotsix.mentee.MemberVO">
+ <select id="menteeCri" resultType="org.hotsix.member.MemberVO">
  
   select menteeNo,id,nickname,name, 
   (select (select id from tbl_member where tbl_member.memberNo=tbl_mento.memberNo)	

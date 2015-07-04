@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<typeAliases>
-		<typeAlias type="org.hotsix.mentee.MemberVO" alias="Member" />
-		<package name="org.hotsix.mentee" />
+		<typeAlias type="org.hotsix.member.MemberVO" alias="Member" />
+		<package name="org.hotsix.member" />
 	</typeAliases>
 </configuration>

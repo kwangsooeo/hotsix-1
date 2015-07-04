@@ -5,6 +5,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.hotsix.mapper.MenteeMapper;
+import org.hotsix.member.MemberVO;
 import org.hotsix.page.Criteria;
 import org.hotsix.page.PageMaker;
 import org.springframework.stereotype.Service;

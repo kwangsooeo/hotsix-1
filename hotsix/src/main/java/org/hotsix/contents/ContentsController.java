@@ -52,7 +52,6 @@ public class ContentsController {
 	//페이징
 	@RequestMapping(value="/contentsListCri", method = RequestMethod.GET)
 	public void listPaging(@ModelAttribute("cri")Criteria cri , Model model)throws Exception{
-		
 		model.addAttribute("list", service.listPaging(cri));
 		model.addAttribute("pageMaker",service.countPaging(cri).calcPage(cri));
 	}

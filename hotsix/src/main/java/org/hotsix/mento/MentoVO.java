@@ -2,6 +2,8 @@ package org.hotsix.mento;
 
 import java.util.Date;
 
+import org.hotsix.member.MemberVO;
+
 public class MentoVO extends MemberVO{
 	
 	private int mentoNo;

@@ -5,7 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
-import org.hotsix.mentee.MemberVO;
+import org.hotsix.member.MemberVO;
 import org.hotsix.mentee.MenteeVO;
 import org.hotsix.page.Criteria;
 import org.hotsix.page.PageMaker;
