@@ -9,8 +9,10 @@
 <%@include file="../include/header.jsp"%>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+	.hideDiv{display: none;}
+</style>
 </head>
-<body>
 	<div class="content-wrapper">
 		<!-- Content Header (Page header) -->
 		<section class="content-header">
@@ -38,17 +40,56 @@
 					</div>
 				</div>
 			</div>
-			
-			
-			<div class='box-body chat' id='chat-box'>
-				<!-- chat item -->
+<c:forEach items="${list}" var="list" >
+
+<div class='box-body chat' id='chat-box'>
+		
+    <div class='item' style='padding-bottom: 30px'>
+        <span class='online'>${list.qnaNo } / ${list.memberNo} </span>
+        <p class='message'>
+        <a class='name'>
+		<button value='${list.qnaNo }' class='delQna btn btn-danger btn-xs'>
+            <i class='glyphicon glyphicon-remove'></i></button>
+        <span style='color: #adadad; font-size: 9pt'>[${list.qna_type }]</span>
+			<small class='text-muted pull-right'>
+                <i class='fa fa-clock-o'></i>${list.regdate }
+            </small>  ${list.title}</a>    ${list.contents }
+        </p>
+	        <div class="${list.qnaNo} attachment" id="replyDiv">
+				<h5><a class="reply" href="${list.qnaNo}">댓글(${list.replycnt})</a></h5>
+				
+		   		<div class='replyListDiv hideDiv'></div>
 				
 			</div>
-			<!-- /.box (chat box) -->
-		</div>
-		</section>
+    </div>
+</div>
+</c:forEach>
+
+    <div class="row box-header">
+           <div class="col-sm-3">
+                  <br>
+           </div>
+           <div class="col-sm-9">
+              <ul class="pager pagenation">
+                    <c:if test="${pageMaker.prev != 0}">
+			      	<li><a href="${pageMaker.prev }">&laquo;</a> </li>
+			    	</c:if>
+			   		 <c:forEach begin="${pageMaker.first}" end="${pageMaker.last }" var="pageNum">
+			    	<li <c:out value="${pageNum==cri.page? 'class=active':''}"/>>
+			    	<a href="${pageNum}"> ${pageNum}</a></li>
+			    	
+			   		 </c:forEach>
+				    <c:if test="${pageMaker.next != 0}">
+				    <li><a href="${pageMaker.next}">&raquo;</a></li>
+				    </c:if>
+             </ul>
+            </div>
+      </div>
+   
+</div>
+</section>
 		
-	</div><!-- /.content-wrapper -->
+</div><!-- /.content-wrapper -->
 	<!-- Modal -->
 <div id="modifyModal" class="modal modal-primary fade" role="dialog">
   <div class="modal-dialog">
@@ -69,117 +110,147 @@
   </div>
 </div>
 	<form id="regForm">
-		<input type="hidden" name="contents">
-		<input type="hidden" name="qnaNo">	
+		<input type="hidden" name="contents" value="">
+		<input type="hidden" name="qnaNo" value="">
+		<input type='hidden' name='parent'>
 	</form>
-	
+	<form class="pageForm">
+			<input type="hidden" name="page" value='${cri.page }'>
+			<input type="hidden" name="perPageNum" value='${cri.perPageNum }'>
+			<input type="hidden" name="displayPageNum" value='${cri.displayPageNum }'>
+	</form>
 <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 <script type="text/javascript">
-		
+		console.log("ddd");
 $(document).ready(function(){
+	console.log('dddd');
+	var targetForm = $(".pageForm");
+	$(".pager").on("click","li a", function(event){
+		event.preventDefault();
+		var target = $(this).attr("href");
+		
+		$("[name='page']").attr("value",target);
+		targetForm.attr("action","/qna/list").attr("method","get");
+		targetForm.submit();
+	});
 	
-	qnaList();
 	
 });
-var qnaList =function(){
-	$.get("/qna/listData", function(data){
-		var str ="";
-		$(data).each(function(){
-			var qna = this.qnaNo;
-			if(this.depth=='a'){
-			str+= "<div class='item' style='padding-bottom: 30px'>";
-			str+=	"<span class='online'>"+this.qnaNo+"/"+this.memberNo+"</span>";
-			str+= "<p class='message'><a class='name'>";
-			str+= 		"<button id='delQna' value='"+this.qnaNo+"' class='btn btn-danger btn-xs'>";
-			str+=		"<i class='glyphicon glyphicon-remove'></i></button>";
-			str+= 	"<span style='color: #adadad; font-size: 9pt' > ["+this.qna_type+"] </span>";
-			str+= 	"<small class='text-muted pull-right'>";
-			str+= 	"<i class='fa fa-clock-o'></i>"+this.regdate+"</small>"+this.title+"</a>";
-			str+= 	this.contents+"</p>";
-			str+= "<div class='attachment'>";
-			};
+
+$('.reply').on("click", function(event){
+	event.preventDefault();
+	var qnaNo= $(this).attr('href');
+	console.log(qnaNo);
+	var listDiv = $("."+qnaNo).find('.replyListDiv');
+	listDiv.toggleClass('hideDiv');
+		$.get("/qna/listData2/"+qnaNo, function(data){
+			var str="";
 			$(data).each(function(){
-				if(qna == this.parent && this.depth =='b'){
+				if(this.parent==qnaNo){
 					str+= "<strong>Re </strong>("+this.regdate+")";
-					str+= "<button id='modReply' value='"+this.qnaNo+"' class='btn-link btn-xs' ";
-					str+= ">수정</button>|";
-					str+= "<button id='delReply' value='"+this.qnaNo+"' class='btn-link btn-xs'>삭제</button>";
+					str+= "<button id='modReply' value='"+this.qnaNo+"' class='btn-link btn-xs'>수정</button>|";
+					str+= "<button id='"+this.parent+"' value='"+this.qnaNo+"' class='delReply btn-link btn-xs'>삭제</button>";
 					str+= "<br><span>: "+this.contents+"</span><br>" ;
 				}
-			});
-		
-			if(this.depth=='a'){
-			str+= "<div class='"+this.qnaNo+"'>";
+			});		
+			str+= "<div class='registDiv'>";
 			str+= "<textarea class='form-control' rows='5' cols='10' name='contents'></textarea>";
-			str+= "<button id='"+this.qnaNo+"' class='registBtn btn btn-primary btn-sm'>";
-			str+= "<i class='fa fa-check'>등록</i></button></div>";
-			str+= "</div></div>";
-			};
-			
-		});
+			str+= "<button id='registBtn' value='"+qnaNo+"' class='registBtn btn btn-primary btn-sm'>";
+			str+= "<i class='fa fa-check'>등록</i></button></div>";		
+			listDiv.html(str);
+		});  
 
-		$('#chat-box').html(str);
-	});
-
-};
-$('#chat-box').on("click",".registBtn", function(){
-	var targetId = $(this).attr("id");
-	var targetContents = $('.'+targetId).find("textarea").val();
-	$('#regForm').find("input[name=contents]").val(targetContents);
-	$('#regForm').find("input[name=qnaNo]").val(targetId);
-	var formData = $('#regForm').serialize();
-	$.post("/qna/registQnA", formData, function(data){
-		alert(data);
-		qnaList();
-	});
 });
 
-$('#chat-box').on("click","#delQna", function(){
-		var qnaNo = $(this).attr('value');
+$('.delQna').on("click", function(){
+	var qnaNo= $(this).val();
+	$.post("/qna/deleteQnA/"+qnaNo, function(data){
+		alert(data);
+		var targetForm = $(".pageForm");
+		targetForm.attr("action","/qna/list").attr("method","get");
+		targetForm.submit();
+	});
+	
+});
+
+$('.replyListDiv').on("click",'.registBtn', function(){
+	var qnaNo = $(this).val();
+	var contents = $('.'+qnaNo).find("div textarea").val();	
+	$("#regForm input[name='qnaNo']").attr("value",qnaNo);
+	$("#regForm input[name='contents']").val(contents);
+	$("input[name='parent']").remove();
+	var listDiv = $("."+qnaNo).find('.replyListDiv');
+	var data = $('#regForm').serialize();
+	$.post("/qna/registQnA", data, function(data){
+		alert(data);
+		var targetForm = $(".pageForm");
+		targetForm.attr("action","/qna/list").attr("method","get");
+		targetForm.submit();
 		
-		$.post("/qna/deleteQnA/"+qnaNo, function(data){
-			alert(data);
-			qnaList();
-		});
+		$.get("/qna/listData2/"+qnaNo, function(data){
+			var str="";
+			$(data).each(function(){
+				if(this.parent==qnaNo){
+					str+= "<strong>Re </strong>("+this.regdate+")";
+					str+= "<button id='modReply' value='"+this.qnaNo+"' class='btn-link btn-xs'>수정</button>|";
+					str+= "<button id='"+this.parent+"' value='"+this.qnaNo+"' class='delReply btn-link btn-xs'>삭제</button>";
+					str+= "<br><span>: "+this.contents+"</span><br>" ;
+				}
+			});		
+			str+= "<div class='registDiv'>";
+			str+= "<textarea class='form-control' rows='5' cols='10' name='contents'></textarea>";
+			str+= "<button id='registBtn' value='"+qnaNo+"' class='registBtn btn btn-primary btn-sm'>";
+			str+= "<i class='fa fa-check'>등록</i></button></div>";		
+			listDiv.html(str);
+			
+		});  
+	});  
 });
-	
-$('#chat-box').on("click",'#delReply', function(){
-	var qnaNo = $(this).attr('value');
-	console.log(qnaNo);
-	$.post("/qna/deleteReply/"+qnaNo, function(data){
-		alert(data);
-		qnaList();
-	});
-});		
 
-$('#chat-box').on("click",'#modReply', function(){
+$('.replyListDiv').on("click",".delReply",function(){
+	var qnaNo = $(this).val();
+	var parent = $(this).attr("id");
+	console.log(qnaNo+": "+parent);
+	$("#regForm input[name='qnaNo']").attr("value",qnaNo);
+	$("#regForm input[name='parent']").val(parent);
+	var data = $('#regForm').serialize();
 	
+	$.post("/qna/deleteReply",data, function(data){
+		alert(data);
+		var targetForm = $(".pageForm");
+		targetForm.attr("action","/qna/list").attr("method","get");
+		targetForm.submit();
+	}); 
+});
+$('.replyListDiv').on("click",'#modReply', function(){
 	var qnaNo = $(this).attr('value');
 	console.log(qnaNo);
 	$('#regForm').find("input[name=qnaNo]").val(qnaNo);
 	$.get("/qna/readReply/"+qnaNo, function(data){
-		console.log(data);
+		
 		var modal = $("#modifyModal");
 		modal.find(".modal-title").text(data.regdate);
 		modal.find("#replytext").val(data.contents);
 		modal.modal();	
-		console.log(modal);
 	});
 });
-	
 
 $("#replyModBtn").on("click", function(event){
 	var contents = $("#modifyModal").find("#replytext").val();
 	console.log("con:"+contents+"//");
 	$('#regForm').find("input[name=contents]").val(contents);
+	$("input[name='parent']").remove();
+	console.log($('#regForm').find("input[name=contents]").val());
 	var modData = $('#regForm').serialize();
 	$.post("/qna/modifyReply",modData, function(data){
 		console.log(data);
 		$("#modifyModal").modal("hide");
-		qnaList();
+		var targetForm = $(".pageForm");
+		targetForm.attr("action","/qna/list").attr("method","get");
+		targetForm.submit();
 	});
 });
-	</script>
-</body>
+ 
+</script>
 <%@include file="../include/footer.jsp"%>
 </html>

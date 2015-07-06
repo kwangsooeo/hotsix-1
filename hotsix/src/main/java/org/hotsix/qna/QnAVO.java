@@ -12,6 +12,7 @@ public class QnAVO {
 	private int qna_status;
 	private int parent;
 	private String depth;
+	private int replycnt;
 
 	public int getQnaNo() {
 		return qnaNo;
@@ -67,13 +68,20 @@ public class QnAVO {
 	public void setDepth(String depth) {
 		this.depth = depth;
 	}
+	
+	public int getReplycnt() {
+		return replycnt;
+	}
+	public void setReplycnt(int replycnt) {
+		this.replycnt = replycnt;
+	}
 	@Override
 	public String toString() {
 		return "QnAVO [qnaNo=" + qnaNo + ", memberNo=" + memberNo + ", title="
 				+ title + ", contents=" + contents + ", regdate=" + regdate
 				+ ", qna_type=" + qna_type + ", qna_status=" + qna_status
-				+ ", parent=" + parent + ", depth=" + depth + "]";
+				+ ", parent=" + parent + ", depth=" + depth + ", replycnt="
+				+ replycnt + "]";
 	}
-	
 	
 }

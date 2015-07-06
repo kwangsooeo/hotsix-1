@@ -5,6 +5,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.hotsix.page.Criteria;
+import org.hotsix.page.PageMaker;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -23,21 +24,22 @@ public class QnAController {
 	@Inject
 	private QnAService service;
 
-	@RequestMapping(value="/list", method= RequestMethod.GET)
-	public String qnalistPage2(@ModelAttribute("cri")Criteria cri, Model model) throws Exception {
 
-		//model.addAttribute("pageMaker", service.total(cri).calcPage(cri));
-	
+	@RequestMapping(value="/list", method= RequestMethod.GET)
+	public String qnalistPage(@ModelAttribute("cri")Criteria cri, Model model) throws Exception {
+		model.addAttribute("list", service.qna_aList(cri));
+		model.addAttribute("pageMaker", service.total(cri).calcPage(cri));
 		return "/qna/qnaList";
 	}
 	
-	@RequestMapping("/listData")
+	@RequestMapping("/listData2/{qnaNo}")
 	@ResponseBody
-	public List<QnAVO> qnalist(Criteria cri) throws Exception{
-		logger.info(cri.toString());
-		return service.qnaList(cri);
+	public List<QnAVO> qnalist2(@PathVariable("qnaNo")int qnaNo) throws Exception{
+		
+		List<QnAVO> list =service.qna_bList(qnaNo);
+		
+		return list;
 	}
-	
 	@RequestMapping("/deleteQnA/{qnaNo}")
 	@ResponseBody
 	public String deleteQnA(@PathVariable("qnaNo")int qnaNo) throws Exception{
@@ -49,18 +51,20 @@ public class QnAController {
 	@RequestMapping(value="/registQnA", method= RequestMethod.POST)
 	@ResponseBody
 	public String registReply(QnAVO qvo) throws Exception{
-		logger.info(qvo.getContents());
-		logger.info("등록");
+		
 		service.qnaRegist(qvo);
+		service.qna_cntplus(qvo);
+		
 		return "completed";
 	}
 	
-	@RequestMapping("/deleteReply/{qnaNo}")
+	@RequestMapping("/deleteReply")
 	@ResponseBody
-	public String deleteReply(@PathVariable("qnaNo")int qnaNo) throws Exception{
-		service.qnaRemove(qnaNo);
+	public String deleteReply(QnAVO qvo) throws Exception{
+		service.qna_delreply(qvo);
+		service.qna_cntminus(qvo);
 		
-		return qnaNo+" Delete 삭제";
+		return qvo.getQnaNo()+" Delete 삭제";
 	}
 	
 	@RequestMapping(value="/readReply/{qnaNo}", method=RequestMethod.GET)
@@ -77,5 +81,13 @@ public class QnAController {
 		
 		return "update";
 	}
+	
+	@RequestMapping("/listPaging")
+	@ResponseBody
+	public PageMaker listPaging(Criteria cri) throws Exception{
+		
+		return service.total(cri).calcPage(cri);
+	}
+	
 	
 }
