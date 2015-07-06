@@ -35,11 +35,11 @@
 									<th>Registration Date</th>
 								</tr>
 							</thead>
-							<tbody >
+							<tbody>
 								<c:forEach items="${list}" var="list">
 									<tr class="task-list">
 										<th>${list.contentsNo}</th>
-										<th><span id="${list.jobNo }">${list.title}</span></th>
+										<th><span id="${list.contentsNo }">${list.title}</span></th>
 										<th>${list.regdate }</th>
 									<tr>
 								</c:forEach>
@@ -58,12 +58,22 @@
 								class="btn btn-default">글쓰기</button>
 						</div>
 						<div class="col-sm-9">
-							<ul class="pager pagenation">
-								<li><a href="#">Previous</a></li>
-								<c:forEach var="page" begin="1" end="10">
-									<li><a href="${page }">${page }</a></li>
+							<ul class="pagination">
+							
+							<!--prev-->
+							<c:if test="${pageMaker.prev != 0 }">
+								<li><a href="${pageMaker.prev}">&laquo;</a></li>							
+							</c:if>
+							
+								<c:forEach begin="${pageMaker.first }" end="${pageMaker.last }" var="idx">
+									<li <c:out value="${cri.page == idx?'class=active':''}"/>><a href="${idx}">${idx }</a></li>
 								</c:forEach>
-								<li><a href="#">Next</a></li>
+							
+							<!--next-->	
+							<c:if  test="${pageMaker.next !=0 }">
+								<li><a href="${pageMaker.next }">&raquo;</a></li>
+							</c:if>
+							
 							</ul>
 						</div>
 					</div>
@@ -75,26 +85,39 @@
 	</div>
 	<!-- /.content-wrapper -->
 
-	<form id="jobForm" action="/contents/contentsRead" method="get">
-		<input type='hidden' name='jobNo'>
+	<form id="jobForm">
+		<input type='hidden' name='contentsNo'> 
+		<input type='hidden'name='page' value='${cri.page }'> 
+		<input type='hidden'name='perPageNum' value='${cri.perPageNum }'> 
+		<input type='hidden' name='displayPageNum' value='${cri.displayPageNum }'>
 	</form>
 
 	<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
 
 	<script>
+		$(".pagination li a").on("click", function(event){
+			event.preventDefault();
+			var targetPageNum = $(this).attr("href");
+			
+			var jobForm =  $("#jobForm");
+			jobForm.find("[name='contentsNo']").remove();
+			jobForm.find("[name='page']").val(targetPageNum);
+			jobForm.attr("action","/contents/contentsListCri").attr("method","get");
+			jobForm.submit();
+		});
+		
 		$(".task-list").on("click","span", function(event) {
+			
 				var targetId = $(this).attr("id");
 
 				var targetForm = $("#jobForm");
 
-				targetForm.find("input[name='jobNo']").val(targetId);
+				targetForm.find("input[name='contentsNo']").val(targetId);
 
-								targetForm.attr("action",
-										"/contents/contentsRead").attr(
-										"method", "get");
-								targetForm.submit();
-							});
-			
+				targetForm.attr("action","/contents/contentsReadPage").attr("method", "get");
+				targetForm.submit();
+		});
+		
 	</script>
 </body>
 <%@include file="../include/footer.jsp"%>

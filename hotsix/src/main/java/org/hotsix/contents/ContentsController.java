@@ -28,7 +28,7 @@ public class ContentsController {
 	}
 	
 	@RequestMapping(value="/contentsRegist", method = RequestMethod.POST)
-	public String registPOST(ContentsVO contents, Model model)throws Exception{
+	public String registPOST(@ModelAttribute("cri")Criteria cri, ContentsVO contents, Model model)throws Exception{
 		logger.info("POST 방식으로 등록");
 		logger.info(contents.toString());
 		
@@ -40,19 +40,18 @@ public class ContentsController {
 
 	//삭제
 	@RequestMapping(value="/contentsRemove", method = RequestMethod.POST)
-	public String remove(ContentsVO vo)throws Exception{
+	public String remove(@ModelAttribute("cri")Criteria cri,ContentsVO vo)throws Exception{
 		
 		logger.info("제거 완료");
 		
 		service.deleteContents(vo);
 		
-		return "/contents/success";
+		return "/suc/contentsSuccess[;";
 	}
 	
 	//페이징
 	@RequestMapping(value="/contentsListCri", method = RequestMethod.GET)
 	public void listPaging(@ModelAttribute("cri")Criteria cri , Model model)throws Exception{
-		
 		model.addAttribute("list", service.listPaging(cri));
 		model.addAttribute("pageMaker",service.countPaging(cri).calcPage(cri));
 	}
@@ -65,19 +64,19 @@ public class ContentsController {
 	}
 	
 	//페이징-수정(GET)
-	@RequestMapping(value="/contentsModify", method=RequestMethod.GET)
+	@RequestMapping(value="/contentsModifyPage", method=RequestMethod.GET)
 	public void modifyGET(@ModelAttribute("cri")Criteria cri, ContentsVO vo, Model model)throws Exception{
 		
-		model.addAttribute(service.readContents(cri.getPage()));
+		model.addAttribute(service.readContents(vo.getContentsNo()));
 	}
 	
 	//페이징-수정(POST)
-	@RequestMapping(value="/contentsModify", method=RequestMethod.POST)
+	@RequestMapping(value="/contentsModifyPage", method=RequestMethod.POST)
 	public String modifyPOST(@ModelAttribute("cri")Criteria cri, ContentsVO vo, Model model)throws Exception{
 		
 		service.update(vo);
 		
-		return "/contents/success";
+		return "/suc/contentsSuccess";
 	}
 	
 }

@@ -4,6 +4,8 @@ import java.util.Date;
 
 import javax.inject.Inject;
 
+import org.hotsix.member.MemberVO;
+
 
 public class MenteeVO extends MemberVO {
 

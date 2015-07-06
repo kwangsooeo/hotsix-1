@@ -59,8 +59,10 @@ a:hover{text-decoration:none; color:black;}
 							<tr>
 								<td>#</td>
 								<td>제목</td>
+								<td>첨부파일</td>
 								<td>날짜</td>
 								<td>조회</td>
+								
 							</tr>
 						</thead>
 						
@@ -70,8 +72,10 @@ a:hover{text-decoration:none; color:black;}
 								<tr class="notice-list">
 									<td>${list.noticeNo }</td>
 									<td><a href="/notice/noticeRead?noticeNo=${list.noticeNo }"><span id="${list.noticeNo }">${list.title }</span></a></td>
+									<td>${list.fileName }</td>
 									<td>${list.regdate }</td>
 									<td>${list.viewCnt }</td>
+									
 								<tr>
 							
 							</c:forEach>

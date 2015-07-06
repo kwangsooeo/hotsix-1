@@ -2,6 +2,7 @@ package org.hotsix.mentee;
 
 import java.util.List;
 
+import org.hotsix.member.MemberVO;
 import org.hotsix.page.Criteria;
 import org.hotsix.page.PageMaker;
 

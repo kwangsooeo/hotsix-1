@@ -20,7 +20,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</if>
 		</sql>
 		<select id="noticeList" resultType="org.hotsix.notice.NoticeVO">
-		select noticeNo,title,contents,regdate,viewCnt from tbl_notice where
+		select * from tbl_notice where
 		noticeNo > 0
 		<include refid="searchSQL" />
 		order by noticeNo desc limit #{pageStart},#{perPageNum}

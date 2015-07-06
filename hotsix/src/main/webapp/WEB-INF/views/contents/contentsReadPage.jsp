@@ -15,32 +15,20 @@ pageEncoding="UTF-8"%>
 <title>Insert title here</title>
 
 </head>
-
 <body>
-
 <div class="content-wrapper">
 
         <!-- Content Header (Page header) -->
 
         <section class="content-header">
-
           <h1>
-
             Contents
-
           </h1>
-
-         
-
         </section>
-
-
 
         <!-- Main content -->
 
         <section class="content">
-
-
 
           <!-- row -->
 
@@ -60,9 +48,9 @@ pageEncoding="UTF-8"%>
 
                   <div class="timeline-item">
 
-                    <span class="time"><i class="fa fa-clock-o"></i>${contentsVO.regdate }</span>
+                    <span class="time"><i class="fa fa-clock-o"></i>${contentsVO.regdate}</span>
 
-                    <h3 class="timeline-header">Mr. Lee</h3>
+                    <h3 class="timeline-header">${contentsVO.title}</h3>
 
                     <div class="timeline-body">
 
@@ -87,6 +75,7 @@ pageEncoding="UTF-8"%>
                   </div>
 
                 </li>
+                
 
                 <!-- END timeline item -->
 
@@ -107,14 +96,17 @@ pageEncoding="UTF-8"%>
         </section><!-- /.content -->
 
       </div><!-- /.content-wrapper -->
+      
+      <form id='jobForm'>
+      	<input type='hidden' name='contentsNo' value='${contentsVO.contentsNo}'>
+      	<input type='hidden' name='title' value='${contentsVO.title }'>
+      	<input type='hidden' name='link' value='${contentsVO.link }'>
+      	
+		<input type='hidden' name='page' value='${cri.page }'>
+		<input type='hidden' name='perPageNum' value='${cri.perPageNum }'>
+		<input type='hidden' name='displayPageNum' value='${cri.displayPageNum }'>
+	  </form>
 
-
-	<form id='jobForm'>
-
-		<input type='hidden' name='contentsNo' value='${contentsVO.contentsNo }'>
-
-	</form>
-	
 
       <!-- Control Sidebar -->      
 
@@ -444,32 +436,69 @@ pageEncoding="UTF-8"%>
 
       <div class='control-sidebar-bg'></div>
 
-    </div>
+    </div> 
+  
     
-    
-	<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
 	<script>
 		$(document).ready(function() {
 			var jobForm = $("#jobForm");
 
 			$("#listBtn").click(function() {
-				self.location = "/contents/contentsList";
+				self.location = "/contents/contentsListCri";
 			});
 
-			$("#modifyBtn").click(function() {
-				jobForm.attr("action", "/contents/contentsModify");
+			$("#modBtn").click(function() {
+				jobForm.attr("action", "/contents/contentsModifyPage");
 				jobForm.attr("method", "get");
 				jobForm.submit();
 			});
 
-			$("#deleteBtn").click(function() {
+			$("#delBtn").click(function() {
 				jobForm.attr("action", "/contents/contentsRemove");
 				jobForm.attr("method", "post");
 				jobForm.submit();
 			});
 		});
+		
+		
+		
+		
+		var tag = document.createElement('script');
+
+	    tag.src = "https://www.youtube.com/iframe_api";
+	    var firstScriptTag = document.getElementsByTagName('script')[0];
+	    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+	    var player;
+	    function onYouTubeIframeAPIReady() {
+	        player = new YT.Player('player', {
+	            height: '390',
+	            width: '640',
+	            'videoId': '프로그래머',
+	            playerVars:{
+	                'autoplay': 1,
+	                'listType':'search',
+	                 'list': '요리사'
+	            }
+	        });
+	    }
+
+	    function onPlayerReady(event) {
+	        event.target.playVideo();
+	    }
+	    var done = false;
+	    function onPlayerStateChange(event) {
+	        if (event.data == YT.PlayerState.PLAYING && !done) {
+	            setTimeout(stopVideo, 6000);
+	            done = true;
+	        }
+	    }
+	    function stopVideo() {
+	        player.stopVideo();
+	    }
 	</script>
-	</body>
+</body>
 <%@include file="../include/footer.jsp"%>
 
 </html>

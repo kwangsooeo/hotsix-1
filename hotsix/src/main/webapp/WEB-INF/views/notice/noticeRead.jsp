@@ -4,7 +4,6 @@
 <html>
 <head>
 <%@include file="../include/header.jsp"%>
-
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
@@ -62,7 +61,7 @@
 	<div class="form-group">
 		<label class="col-sm-2 col-sm-2 control-label">첨부파일</label>
 		<div class="col-sm-10">
-			<input class="form-control" name="filename" type="text" value="${noticeVO.filename }"readonly>
+			<input class="form-control"  name="fileName" type="text" value="${noticeVO.fileName }"readonly>
 		</div>
 	</div>
 	

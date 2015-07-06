@@ -1,20 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<%@include file="../include/header.jsp"%>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
-	<section class="content"> 
-		<div>
-					
-		</div>
-	</section>
-	</div>
-	<!-- /.content-wrapper -->
+<script type="text/javascript">
+alert("아이디 혹은 비밀번호가 틀렸습니다.");
+history.go(-1);
+</script>
 </body>
-<%@include file="../include/footer.jsp"%>
 </html>

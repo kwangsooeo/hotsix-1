@@ -33,13 +33,12 @@
                   <thead>
                   
                   
-	<form class="UpdatePOST" id="updateForm" >
+	<form class="UpdatePOST" id="updateForm" method="post" enctype="multipart/form-data" name="fileName" >
 	<input type="hidden" name="page" value="${cri.page }">
 	<input type="hidden" name="perPageNum" value="${cri.perPageNum }">
 	<input type="hidden" name="displayPageNum" value="${cri.displayPageNum }">
 	<input type="hidden" name="keyword" value="${cri.keyword }">
 	<input type="hidden" name="searchType" value="${cri.searchType }">
-	
 	
 	<div class="form-group">
 		<label class="col-sm-2 col-sm-2 control-label">번호</label>
@@ -60,7 +59,7 @@
 			<textarea class="form-control"  name="contents" rows="5">${noticeVO.contents }</textarea>
 		</div>
 	</div>
-	</form>
+	
 	<div class="form-group">
 		<label class="col-sm-2 col-sm-2 control-label">날짜</label>
 		<div class="col-sm-10">
@@ -69,19 +68,20 @@
 			<input class="form-control" name="regdate" type="text" value="${dateString }" readonly>
 		</div>
 	</div>
+	 
 	<div class="form-group">
 		<label class="col-sm-2 col-sm-2 control-label">첨부파일</label>
 		<div class="col-sm-10">
-			<input class="form-control" name="filename" type="text" value="${noticeVO.filename }"readonly>
+			<input type="file" value="${noticeVO.fileName }" name="file">
 		</div>
 	</div>
-	
-	<div class="showback">
-		<button class="btn btn-theme" id="back" type="submit">저장</button>
-	</div>
+	</form>
 	
 		</thead>
                </table>
+               <div class="showback" >
+					<button class="btn btn-theme" id="back" type="submit">저장</button>
+				</div>
             </div>
             <!-- /.box-body -->
                </div>
@@ -111,5 +111,9 @@
 		});
 	
 	</script>
+	<script>
+  function addFilePath(msg){
+	  alert(msg);
+  }
 <%@include file="../include/footer.jsp"%>
 </html>

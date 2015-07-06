@@ -2,11 +2,21 @@ package org.hotsix.page;
 
 public class PageMaker {
 	private int totalCount;
+	private int countWaiting;
 	private int first;
 	private int last;
 	private int prev;
 	private int next;
 	private int start;
+	
+	
+	public int getCountWaiting() {
+		return countWaiting;
+	}
+
+	public void setCountWaiting(int countWaiting) {
+		this.countWaiting = countWaiting;
+	}
 
 	public int getStart() {
 		return start;

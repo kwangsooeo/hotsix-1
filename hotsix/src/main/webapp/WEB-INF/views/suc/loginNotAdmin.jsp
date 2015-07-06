@@ -7,16 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form id="pageForm" action="/job/list">
-	<input type="hidden" name="page" value="${cri.page }">
-	<input type="hidden" name="perPageNum" value="${cri.perPageNum }">
-	<input type="hidden" name="displayPageNum" value="${cri.displayPageNum }">
-</form>
-<script type="text/javascript" src="/resources/js/jquery-1.11.3.js"></script>
 <script type="text/javascript">
-alert('Success!!!');
-$('#pageForm').submit();
-
+alert("관리자권한이 없습니다.");
+history.go(-1);
 </script>
 </body>
 </html>
