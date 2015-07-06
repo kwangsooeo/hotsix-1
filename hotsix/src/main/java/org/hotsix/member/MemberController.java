@@ -31,7 +31,7 @@ public class MemberController {
 		String userId = vo.getId();
 		if(member.getMemberChkCount() == 1 && member.getAuthority().equals("admin")){
 			Cookie loginCookie = new Cookie("login", userId);
-			loginCookie.setMaxAge(60);
+			loginCookie.setMaxAge(((60*60)*24)*7);
 			loginCookie.setPath("/");
 			response.addCookie(loginCookie);
 			return "redirect:/member/chk";

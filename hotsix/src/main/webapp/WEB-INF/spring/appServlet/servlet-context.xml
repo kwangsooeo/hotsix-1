@@ -8,7 +8,7 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
 	<mvc:annotation-driven />
-	<beans:bean id="login" class="org.hotsix.aop.LoginChkAOP"/>
+	<beans:bean id="login" class="org.hotsix.interceptor.LoginChkInterceptor"/>
 	
 	 <mvc:interceptors>
 		<mvc:interceptor>
@@ -18,7 +18,7 @@
 			<mvc:mapping path="/mentee/*"/>
 			<mvc:mapping path="/qna/*"/>
 			<mvc:mapping path="/notice/*"/>
-			<beans:bean class="org.hotsix.aop.LoginChkAOP"/>
+			<beans:bean class="org.hotsix.interceptor.LoginChkInterceptor"/>
 		</mvc:interceptor>
 	</mvc:interceptors> 
 
