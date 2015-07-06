@@ -25,17 +25,17 @@
   <body class="login-page">
     <div class="login-box">
       <div class="login-logo">
-        <a href="../../index2.html"><b>Hotsix</b>Admin</a>
+        <a href="#"><b>Hotsix</b>Admin</a>
       </div><!-- /.login-logo -->
       <div class="login-box-body">
         <p class="login-box-msg">Sign in to start your session</p>
-        <form action="" method="post">
+        <form action="/member/login" method="post">
           <div class="form-group has-feedback">
-            <input type="email" class="form-control" placeholder="Email"/>
+            <input type="text" class="form-control" name="id" placeholder="Email"/>
             <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
           </div>
           <div class="form-group has-feedback">
-            <input type="password" class="form-control" placeholder="Password"/>
+            <input type="password" class="form-control" name="pw" placeholder="Password"/>
             <span class="glyphicon glyphicon-lock form-control-feedback"></span>
           </div>
           <div class="row">

@@ -21,9 +21,26 @@ public class MemberVO {
 	private byte[] profileimg;
 	private String edu_level;
 	private int menteeNo;
+	private String authority;
+	private int memberChkCount;
 
 	
-	
+	public int getMemberChkCount() {
+		return memberChkCount;
+	}
+
+	public void setMemberChkCount(int memberChkCount) {
+		this.memberChkCount = memberChkCount;
+	}
+
+	public String getAuthority() {
+		return authority;
+	}
+
+	public void setAuthority(String authority) {
+		this.authority = authority;
+	}
+
 	public String getMenteeId() {
 		return menteeId;
 	}
@@ -154,12 +171,16 @@ public class MemberVO {
 
 	@Override
 	public String toString() {
-		return "MemberVO [memberNo=" + memberNo + ", id=" + " nickname="
-				+ nickname + ", pw=" + pw + ", name=" + name + ", gender="
-				+ gender + ", birth=" + birth + ", location=" + location
-				+ ", comment=" + comment + ", regdate=" + regdate
-				+ ", logdate=" + logdate + ", profileimg="
-				+ Arrays.toString(profileimg) + "]";
+		return "MemberVO [memberNo=" + memberNo + ", id=" + id + ", menteeId="
+				+ menteeId + ", mentoId=" + mentoId + ", nickname=" + nickname
+				+ ", pw=" + pw + ", name=" + name + ", gender=" + gender
+				+ ", birth=" + birth + ", location=" + location + ", comment="
+				+ comment + ", regdate=" + regdate + ", logdate=" + logdate
+				+ ", profileimg=" + Arrays.toString(profileimg)
+				+ ", edu_level=" + edu_level + ", menteeNo=" + menteeNo
+				+ ", authority=" + authority + ", memberChkCount="
+				+ memberChkCount + "]";
 	}
+
 
 }
