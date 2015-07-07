@@ -11,9 +11,18 @@ public class MentoVO extends MemberVO{
 	private String career;
 	private int status;
 	private String id;
+	private int countWaiting;
 	
 
 	
+	public int getCountWaiting() {
+		return countWaiting;
+	}
+
+	public void setCountWaiting(int countWaiting) {
+		this.countWaiting = countWaiting;
+	}
+
 	public String getId() {
 		return id;
 	}

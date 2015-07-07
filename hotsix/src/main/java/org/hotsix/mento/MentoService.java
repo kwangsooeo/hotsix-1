@@ -13,6 +13,6 @@ public interface MentoService {
 	
 	public PageMaker mentoCount(Criteria cri)throws Exception;
 	
-	public void registMento(int MentoNo)throws Exception;
+	public void registMento(int mentoNo)throws Exception;
 
 }

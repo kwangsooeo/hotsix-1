@@ -43,6 +43,6 @@ public interface MentoMapper {
 	
 	
 	@Update ("update tbl_mento set status='2' where mentoNo=#{mentoNo}")
-	public void registmento(int MentoNo)throws Exception;
+	public void registmento(int mentoNo)throws Exception;
 
 }

@@ -75,7 +75,7 @@
                   <tbody>
                      <c:forEach items="${list}" var="list">
                       <tr>
-                           <td><input value="${list.mentoNo}" name="checkbox_mento" type="checkbox"></td>
+                           <td><input id="${list.mentoNo}" name="checkbox_mento" type="checkbox"></td>
                            <td>${list.id }</td>
                            <td>${list.name}</td>
                            <td>${list.nickname }</td>
@@ -162,33 +162,22 @@ $('#select_all').change(function() {
     }
 });
 
-	
-	
-	$("input[name=checkbox_mento]:checked").each(function(){
-		var len = this.length;		//체크박스의 전체개수
-		var chkRow = "";			 //체크된 체크박스의 value를 담기위한 변수
-		var chkCnt = 0;			 //체크된 체크박스의 갯수
-		var chkLast ='';		 //체크된 체크박스중 마지막 체크박스의 인덱스를 담기위한 변수
-		var rowid = ''; 		 //체크된 체크박스의 모든 value값을 담음
-		var cnt = '';
-	for(var i=0; i <len; i++){
-		chkRow = this[i].value;
-		
-		if(chkCnt ==1){					//체크된 체크박스의 갯수가 한 개 일때,
-			rowid += "'"+chkRow+"'"; 	//value의 뒤에 콤마가 붙지않게	
-		}else{
-			if(i ==chkLast){			//체크된 체크 박스 중 마지막 체크박스에
-				rowid += "'"+chkRow+"'";	// 콤마가 붙지않게
-			}else{
-				rowid +="'"+chkRow+"',";	//value 뒤에 콤마가 붙게
-			}
-		}
-		cnt++;
-		chkRow = ''; //초기화
-		console.log(rowid);
-}
+var id = new Array();
+$(".checkbox_mento").on("click", function(){
+	id.push($(this).attr("value"));
 });
-});
+
+$('#registBtn').click(function(){
+	for(var i=0; i<=id.length; i++){
+		console.log(id.pop());
+	}
+	
+	jobForm.attr("action","/mento/regist");
+		jobForm.attr("method","post");
+		jobForm.submit();
+	});
+	
+}); 
 
 	
 </script>
