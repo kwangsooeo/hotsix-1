@@ -20,5 +20,4 @@ public interface QnAService {
 	public void qna_cntplus(QnAVO qvo) throws Exception;
 	public void qna_cntminus(QnAVO qvo) throws Exception;
 	public void qna_delreply(QnAVO qvo) throws Exception;
-	public List<QnAVO> qna_notReplyList(Criteria cri) throws Exception;
 }

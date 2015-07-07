@@ -13,6 +13,7 @@
 	.hideDiv{display: none;}
 </style>
 </head>
+<body>
 	<div class="content-wrapper">
 		<!-- Content Header (Page header) -->
 		<section class="content-header">
@@ -23,7 +24,29 @@
 		</ol>
 		</section>
 		<section class="content">
-
+	<form class="pageForm">
+			<input type="hidden" name="page" value='${cri.page }'>
+			<input type="hidden" name="perPageNum" value='${cri.perPageNum }'>
+			<input type="hidden" name="displayPageNum" value='${cri.displayPageNum }'>
+			<input type="hidden" name="qnaStatus" value='${cri.qnaStatus }'>
+			<select name= 'qnaType' class="qnaType">
+				<option value="qnatype">All----------</option>
+				<option value="member"<c:out value="${cri.qnaType eq 'member'? 'selected':''}"></c:out>>회원문의</option>
+				<option value="use"<c:out value="${cri.qnaType eq 'use'? 'selected':''}"></c:out>>이용문의</option>
+				<option value="con"<c:out value="${cri.qnaType eq 'con'? 'selected':''}"></c:out>>컨텐츠문의</option>
+				<option value="mento"<c:out value="${cri.qnaType eq 'mento'? 'selected':''}"></c:out>>멘토문의</option>
+				<option value="menti"<c:out value="${cri.qnaType eq 'menti'? 'selected':''}"></c:out>>멘티문의</option> 
+				<option value="etc"<c:out value="${cri.qnaType eq 'etc'? 'selected':''}"></c:out>>기타문의</option>
+			</select>
+			<select name='searchType'>
+				<option value='t'<c:out value="${cri.searchType eq 't'? 'selected':''}"></c:out>>제목</option>
+				<option value="tc"<c:out value="${cri.searchType eq 'tc'? 'selected':''}"></c:out>>제목+내용</option>
+				<option value="w"<c:out value="${cri.searchType eq 'w'? 'selected':''}"></c:out>>아이디</option>
+			</select>
+			<input type="text" name="keyword" value="${cri.keyword }">
+			<button type="button" class="search">검색</button>
+			
+	</form>
 		<div class="box box-success">
 			<div class="box-header">
 				<i class="fa fa-comments-o"></i>
@@ -31,12 +54,22 @@
 				<div class="box-tools pull-right" data-toggle="tooltip"
 					title="Status">
 					<div class="btn-group" data-toggle="btn-toggle">
-						<button type="button" class="btn btn-default btn-sm active">
+					<c:if test="${cri.qnaStatus==0}">
+						<button type="button" class="allBtn btn btn-default btn-sm active">
 							<i class="fa fa-square text-green"></i>
 						</button>
-						<button type="button" class="btn btn-default btn-sm">
+						<button type="button" class="notqnaBtn btn btn-default btn-sm">
 							<i class="fa fa-square text-red"></i>
 						</button>
+					</c:if>
+					<c:if test="${cri.qnaStatus==1}">
+						<button type="button" class="allBtn btn btn-default btn-sm">
+							<i class="fa fa-square text-green"></i>
+						</button>
+						<button type="button" class="notqnaBtn btn btn-default btn-sm active">
+							<i class="fa fa-square text-red"></i>
+						</button>
+					</c:if>
 					</div>
 				</div>
 			</div>
@@ -114,27 +147,50 @@
 		<input type="hidden" name="qnaNo" value="">
 		<input type='hidden' name='parent'>
 	</form>
-	<form class="pageForm">
-			<input type="hidden" name="page" value='${cri.page }'>
-			<input type="hidden" name="perPageNum" value='${cri.perPageNum }'>
-			<input type="hidden" name="displayPageNum" value='${cri.displayPageNum }'>
-	</form>
+	
 <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+
 <script type="text/javascript">
-		console.log("ddd");
 $(document).ready(function(){
-	console.log('dddd');
+	
 	var targetForm = $(".pageForm");
+
 	$(".pager").on("click","li a", function(event){
 		event.preventDefault();
-		var target = $(this).attr("href");
-		
+		var target = $(this).attr("href");		
 		$("[name='page']").attr("value",target);
+
 		targetForm.attr("action","/qna/list").attr("method","get");
 		targetForm.submit();
 	});
 	
+	$(".qnaType").on("change", function(){
+		$("[name='page']").attr("value",1);
+		targetForm.attr("action","/qna/list").attr("method","get");
+		targetForm.submit();
+	});
 	
+	$(".search").on("click", function(){
+		$("[name='page']").attr("value",1);
+		targetForm.attr("action","/qna/list").attr("method","get");
+		targetForm.submit();
+	});
+	$(".notqnaBtn").on("click",function(){
+		$("[name='qnaStatus']").attr("value",1);
+		$("[name='page']").attr("value",1);
+		targetForm.attr("action","/qna/list").attr("method","get");
+		targetForm.submit();
+		
+	});
+	$(".allBtn").on("click",function(){
+		$("[name='qnaStatus']").attr("value",0);
+		$("[name='page']").attr("value",1);
+		$("[name='keyword']").remove();
+		$("[name='searchType']").remove();
+		$("[name= 'qnaType']").remove();
+		targetForm.attr("action","/qna/list").attr("method","get");
+		targetForm.submit(); 
+	});
 });
 
 $('.reply').on("click", function(event){
@@ -143,7 +199,7 @@ $('.reply').on("click", function(event){
 	console.log(qnaNo);
 	var listDiv = $("."+qnaNo).find('.replyListDiv');
 	listDiv.toggleClass('hideDiv');
-		$.get("/qna/listData2/"+qnaNo, function(data){
+		$.get("/qna/listData/"+qnaNo, function(data){
 			var str="";
 			$(data).each(function(){
 				if(this.parent==qnaNo){
@@ -159,9 +215,7 @@ $('.reply').on("click", function(event){
 			str+= "<i class='fa fa-check'>등록</i></button></div>";		
 			listDiv.html(str);
 		});  
-
 });
-
 $('.delQna').on("click", function(){
 	var qnaNo= $(this).val();
 	$.post("/qna/deleteQnA/"+qnaNo, function(data){
@@ -172,38 +226,21 @@ $('.delQna').on("click", function(){
 	});
 	
 });
-
 $('.replyListDiv').on("click",'.registBtn', function(){
 	var qnaNo = $(this).val();
 	var contents = $('.'+qnaNo).find("div textarea").val();	
 	$("#regForm input[name='qnaNo']").attr("value",qnaNo);
 	$("#regForm input[name='contents']").val(contents);
 	$("input[name='parent']").remove();
-	var listDiv = $("."+qnaNo).find('.replyListDiv');
+	
 	var data = $('#regForm').serialize();
 	$.post("/qna/registQnA", data, function(data){
 		alert(data);
+		
 		var targetForm = $(".pageForm");
 		targetForm.attr("action","/qna/list").attr("method","get");
 		targetForm.submit();
 		
-		$.get("/qna/listData2/"+qnaNo, function(data){
-			var str="";
-			$(data).each(function(){
-				if(this.parent==qnaNo){
-					str+= "<strong>Re </strong>("+this.regdate+")";
-					str+= "<button id='modReply' value='"+this.qnaNo+"' class='btn-link btn-xs'>수정</button>|";
-					str+= "<button id='"+this.parent+"' value='"+this.qnaNo+"' class='delReply btn-link btn-xs'>삭제</button>";
-					str+= "<br><span>: "+this.contents+"</span><br>" ;
-				}
-			});		
-			str+= "<div class='registDiv'>";
-			str+= "<textarea class='form-control' rows='5' cols='10' name='contents'></textarea>";
-			str+= "<button id='registBtn' value='"+qnaNo+"' class='registBtn btn btn-primary btn-sm'>";
-			str+= "<i class='fa fa-check'>등록</i></button></div>";		
-			listDiv.html(str);
-			
-		});  
 	});  
 });
 
@@ -234,13 +271,12 @@ $('.replyListDiv').on("click",'#modReply', function(){
 		modal.modal();	
 	});
 });
-
 $("#replyModBtn").on("click", function(event){
 	var contents = $("#modifyModal").find("#replytext").val();
 	console.log("con:"+contents+"//");
 	$('#regForm').find("input[name=contents]").val(contents);
 	$("input[name='parent']").remove();
-	console.log($('#regForm').find("input[name=contents]").val());
+	
 	var modData = $('#regForm').serialize();
 	$.post("/qna/modifyReply",modData, function(data){
 		console.log(data);
@@ -252,5 +288,6 @@ $("#replyModBtn").on("click", function(event){
 });
  
 </script>
+</body>
 <%@include file="../include/footer.jsp"%>
 </html>

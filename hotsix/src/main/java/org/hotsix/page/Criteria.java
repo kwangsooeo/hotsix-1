@@ -29,9 +29,22 @@ public class Criteria {
 	private int parent;
 	private String searchType;
 	private String keyword;
+	private String qnaType;
+	private int qnaStatus;
+
+	public int getQnaStatus() {
+		return qnaStatus;
+	}
+	public void setQnaStatus(int qnaStatus) {
+		this.qnaStatus = qnaStatus;
+	}
 	
-	
-	
+	public String getQnaType() {
+		return qnaType;
+	}
+	public void setQnaType(String qnaType) {
+		this.qnaType = qnaType;
+	}
 	public int getNoticeNo() {
 		return NoticeNo;
 	}

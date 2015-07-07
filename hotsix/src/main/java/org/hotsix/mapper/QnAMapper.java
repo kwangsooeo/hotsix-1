@@ -12,17 +12,13 @@ import org.hotsix.qna.QnAVO;
 
 public interface QnAMapper {
 	
-	@Select("select qnaNo,memberNo,title,contents,regdate,qna_type,qna_status,parent,depth,replycnt from tbl_qna "
-			+ "where depth='a' order by parent desc limit #{pageStart}, #{perPageNum}")
+//	@Select("select qnaNo,memberNo,title,contents,regdate,qna_type,qna_status,parent,depth,replycnt from tbl_qna "
+//			+ "where depth='a' order by parent desc limit #{pageStart}, #{perPageNum}")
 	public List<QnAVO> aList(Criteria cri) throws Exception;
 	
 	@Select("select qnaNo,memberNo,title,contents,regdate,qna_type,qna_status,parent,depth,replycnt from tbl_qna "
 			+ "where parent = #{qnaNo} and depth='b'")
 	public List<QnAVO> bList(int qnaNo) throws Exception;
-	
-	@Select("select qnaNo,memberNo,title,contents,regdate,qna_type,qna_status,parent,depth,replycnt from tbl_qna "
-			+ "where depth='a' and replycnt=0 order by parent desc limit #{pageStart}, #{perPageNum}")
-	public List<QnAVO> notreplyList(Criteria cri) throws Exception;
 	
 	@Select("select qnaNo,memberNo,qna_type,title,contents,regdate,parent,depth,qna_status,replycnt from tbl_qna "
 			+ "where qnaNo=#{qnaNo}")
@@ -50,6 +46,6 @@ public interface QnAMapper {
 	@Update("update tbl_qna set contents=#{contents} where qnaNo=#{qnaNo}")
 	public void update(QnAVO qvo) throws Exception;
 	
-	@Select("select count(*) totalCount from tbl_qna where depth='a'")
+//	@Select("select count(*) totalCount from tbl_qna where depth='a'")
 	public PageMaker total(Criteria cri) throws Exception; 
 }

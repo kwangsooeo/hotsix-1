@@ -5,7 +5,6 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.hotsix.page.Criteria;
-import org.hotsix.page.PageMaker;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -32,9 +31,9 @@ public class QnAController {
 		return "/qna/qnaList";
 	}
 	
-	@RequestMapping("/listData2/{qnaNo}")
+	@RequestMapping("/listData/{qnaNo}")
 	@ResponseBody
-	public List<QnAVO> qnalist2(@PathVariable("qnaNo")int qnaNo) throws Exception{
+	public List<QnAVO> qnalist(@PathVariable("qnaNo")int qnaNo) throws Exception{
 		
 		List<QnAVO> list =service.qna_bList(qnaNo);
 		
@@ -45,7 +44,7 @@ public class QnAController {
 	public String deleteQnA(@PathVariable("qnaNo")int qnaNo) throws Exception{
 		service.qnaRemove(qnaNo);
 		service.qnaRemoveWith(qnaNo);
-		return qnaNo+" Delete 삭제";
+		return qnaNo+" Delete";
 	}
 	
 	@RequestMapping(value="/registQnA", method= RequestMethod.POST)
@@ -64,7 +63,7 @@ public class QnAController {
 		service.qna_delreply(qvo);
 		service.qna_cntminus(qvo);
 		
-		return qvo.getQnaNo()+" Delete 삭제";
+		return qvo.getQnaNo()+" Delete";
 	}
 	
 	@RequestMapping(value="/readReply/{qnaNo}", method=RequestMethod.GET)
@@ -81,13 +80,6 @@ public class QnAController {
 		
 		return "update";
 	}
-	
-	@RequestMapping("/listPaging")
-	@ResponseBody
-	public PageMaker listPaging(Criteria cri) throws Exception{
-		
-		return service.total(cri).calcPage(cri);
-	}
-	
+
 	
 }

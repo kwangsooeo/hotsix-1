@@ -75,11 +75,5 @@ public class QnAServiceImpl implements QnAService {
 		mapper.deletereply(qvo);
 		
 	}
-	@Override
-	public List<QnAVO> qna_notReplyList(Criteria cri) throws Exception {
-		// TODO Auto-generated method stub
-		return mapper.notreplyList(cri);
-	}
-	
 	
 }
