@@ -21,21 +21,21 @@ public class MentoServiceImp implements MentoService {
 		return mapper.listMento(cri);
 	}
 
-/*	멘토카운트*/
+/*	硫섑넗移댁슫�듃*/
 	@Override
 	public PageMaker totalCount(Criteria cri) throws Exception {
 		return mapper.countPaging(cri);
 	}
 	
-/*	멘토등록대기중 카운트*/
+/*	硫섑넗�벑濡앸�湲곗쨷 移댁슫�듃*/
 	@Override
 	public PageMaker mentoCount(Criteria cri) throws Exception {
 		return mapper.mentoCount(cri);
 	}
 
 	@Override
-	public void registMento(int MentoNo) throws Exception {
-		mapper.registmento(MentoNo);
+	public void registMento(int mentoNo) throws Exception {
+		mapper.registmento(mentoNo);
 	}
 
 

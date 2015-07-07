@@ -40,7 +40,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 </select>	
 
 <select id="mentoCount" resultType="org.hotsix.page.PageMaker">
-	select count(mentoNo) countWaiting from tbl_mento where status=0
+	select count(mentoNo) countWaiting from tbl_mento where status=1
 </select>
 
 </mapper>
