@@ -2,14 +2,15 @@ package org.hotsix.qna;
 
 import java.sql.Date;
 
-public class QnAVO {
+import org.hotsix.member.MemberVO;
+
+public class QnAVO extends MemberVO{
 	private int qnaNo;
 	private int memberNo;
 	private String title;
 	private String contents;
 	private Date regdate;
 	private String qna_type;
-	private int qna_status;
 	private int parent;
 	private String depth;
 	private int replycnt;
@@ -50,12 +51,6 @@ public class QnAVO {
 	public void setQna_type(String qna_type) {
 		this.qna_type = qna_type;
 	}
-	public int getQna_status() {
-		return qna_status;
-	}
-	public void setQna_status(int qna_status) {
-		this.qna_status = qna_status;
-	}
 	public int getParent() {
 		return parent;
 	}
@@ -79,9 +74,8 @@ public class QnAVO {
 	public String toString() {
 		return "QnAVO [qnaNo=" + qnaNo + ", memberNo=" + memberNo + ", title="
 				+ title + ", contents=" + contents + ", regdate=" + regdate
-				+ ", qna_type=" + qna_type + ", qna_status=" + qna_status
-				+ ", parent=" + parent + ", depth=" + depth + ", replycnt="
-				+ replycnt + "]";
+				+ ", qna_type=" + qna_type + ", parent=" + parent + ", depth="
+				+ depth + ", replycnt=" + replycnt + "]";
 	}
-	
+
 }

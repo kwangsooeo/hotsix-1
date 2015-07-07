@@ -11,6 +11,7 @@
 <title>Insert title here</title>
 <style type="text/css">
 	.hideDiv{display: none;}
+	.item{padding-top:50px; padding-bottom: 30px; padding-right: 40px;}
 </style>
 </head>
 <body>
@@ -41,13 +42,19 @@
 			<select name='searchType'>
 				<option value='t'<c:out value="${cri.searchType eq 't'? 'selected':''}"></c:out>>제목</option>
 				<option value="tc"<c:out value="${cri.searchType eq 'tc'? 'selected':''}"></c:out>>제목+내용</option>
-				<option value="w"<c:out value="${cri.searchType eq 'w'? 'selected':''}"></c:out>>아이디</option>
+				<option value="id"<c:out value="${cri.searchType eq 'id'? 'selected':''}"></c:out>>아이디</option>
+				<option value="na"<c:out value="${cri.searchType eq 'na'? 'selected':''}"></c:out>>이름</option>
 			</select>
 			<input type="text" name="keyword" value="${cri.keyword }">
 			<button type="button" class="search">검색</button>
 			
 	</form>
+	<c:if test="${cri.qnaStatus==0}">
 		<div class="box box-success">
+	</c:if>
+	<c:if test="${cri.qnaStatus==1}">
+		<div class="box box-danger">
+	</c:if>
 			<div class="box-header">
 				<i class="fa fa-comments-o"></i>
 				<h3 class="box-title"></h3>
@@ -77,16 +84,16 @@
 
 <div class='box-body chat' id='chat-box'>
 		
-    <div class='item' style='padding-bottom: 30px'>
-        <span class='online'>${list.qnaNo } / ${list.memberNo} </span>
+    <div class='item'>
         <p class='message'>
         <a class='name'>
 		<button value='${list.qnaNo }' class='delQna btn btn-danger btn-xs'>
             <i class='glyphicon glyphicon-remove'></i></button>
         <span style='color: #adadad; font-size: 9pt'>[${list.qna_type }]</span>
 			<small class='text-muted pull-right'>
+				<span class='label label-default' style='font-size: 9pt'>${list.id}(${list.name})</span>
                 <i class='fa fa-clock-o'></i>${list.regdate }
-            </small>  ${list.title}</a>    ${list.contents }
+            </small>  ${list.title}</a><br>    ${list.contents }
         </p>
 	        <div class="${list.qnaNo} attachment" id="replyDiv">
 				<h5><a class="reply" href="${list.qnaNo}">댓글(${list.replycnt})</a></h5>
