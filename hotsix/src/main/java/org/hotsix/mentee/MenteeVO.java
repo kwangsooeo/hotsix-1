@@ -2,8 +2,6 @@ package org.hotsix.mentee;
 
 import java.util.Date;
 
-import javax.inject.Inject;
-
 import org.hotsix.member.MemberVO;
 
 
@@ -18,9 +16,11 @@ public class MenteeVO extends MemberVO {
 	
 	
 
+	@Override
 	public String getId() {
 		return id;
 	}
+	@Override
 	public void setId(String id) {
 		this.id = id;
 	}
@@ -139,9 +139,11 @@ public class MenteeVO extends MemberVO {
 	
 	
 	
+	@Override
 	public int getMemberNo() {
 		return memberNo;
 	}
+	@Override
 	public void setMemberNo(int memberNo) {
 		this.memberNo = memberNo;
 	}

@@ -1,9 +1,6 @@
 package org.hotsix.notice;
 
-import java.util.Arrays;
 import java.util.Date;
-
-import org.springframework.web.multipart.MultipartFile;
 
 public class NoticeVO {
 

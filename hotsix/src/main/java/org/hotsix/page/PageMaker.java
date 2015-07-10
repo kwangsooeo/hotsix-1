@@ -72,13 +72,13 @@ public class PageMaker {
 		double perPageNum = cri.getPerPageNum();
 		double displayPageNum = cri.getDisplayPageNum();
 
-		double tempLast = Math.ceil(page / (double) displayPageNum)
+		double tempLast = Math.ceil(page / displayPageNum)
 				* displayPageNum;
 
 		first = (int) (tempLast - displayPageNum) + 1;
 		start = (int) (tempLast - displayPageNum) + 1;
 		last = (int) (totalCount < tempLast * perPageNum ? Math.ceil(totalCount
-				/ (double) perPageNum) : tempLast);
+				/ perPageNum) : tempLast);
 
 		prev = first > 1 ? first - 1 : 0;
 		next = totalCount > last * perPageNum ? last + 1 : 0;

@@ -21,9 +21,11 @@ public class QnAVO extends MemberVO{
 	public void setQnaNo(int qnaNo) {
 		this.qnaNo = qnaNo;
 	}
+	@Override
 	public int getMemberNo() {
 		return memberNo;
 	}
+	@Override
 	public void setMemberNo(int memberNo) {
 		this.memberNo = memberNo;
 	}
@@ -39,6 +41,7 @@ public class QnAVO extends MemberVO{
 	public void setContents(String contents) {
 		this.contents = contents;
 	}
+	@Override
 	public Date getRegdate() {
 		return regdate;
 	}

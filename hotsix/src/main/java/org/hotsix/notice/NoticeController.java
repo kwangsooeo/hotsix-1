@@ -8,7 +8,6 @@ import java.text.DecimalFormat;
 import java.util.Calendar;
 import java.util.UUID;
 
-import javax.activation.FileTypeMap;
 import javax.annotation.Resource;
 import javax.imageio.ImageIO;
 import javax.inject.Inject;
@@ -60,7 +59,7 @@ public class NoticeController {
 	@RequestMapping(value = "/noticeRegist", method = RequestMethod.POST)
 	public String registPOST(@ModelAttribute("cri") Criteria cri,
 			MultipartFile file, NoticeVO vo, Model model) throws Exception {
-		logger.info("µé¾î¿È");
+		logger.info("ï¿½ï¿½ï¿½ï¿½");
 		logger.info("registPOST...");
 		logger.info(vo.toString());
 

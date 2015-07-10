@@ -2,8 +2,6 @@ package org.hotsix.contents;
 
 import java.util.Date;
 
-import org.hotsix.job.JobVO;
-
 /*
  * 
  * create table tbl_contents(

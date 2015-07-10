@@ -23,10 +23,12 @@ public class MentoVO extends MemberVO{
 		this.countWaiting = countWaiting;
 	}
 
+	@Override
 	public String getId() {
 		return id;
 	}
 
+	@Override
 	public void setId(String id) {
 		this.id = id;
 	}
@@ -106,9 +108,11 @@ public class MentoVO extends MemberVO{
 	public void setMentoNo(int mentoNo) {
 		this.mentoNo = mentoNo;
 	}
+	@Override
 	public int getMemberNo() {
 		return memberNo;
 	}
+	@Override
 	public void setMemberNo(int memberNo) {
 		this.memberNo = memberNo;
 	}

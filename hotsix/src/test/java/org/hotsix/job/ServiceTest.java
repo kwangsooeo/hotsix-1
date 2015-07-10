@@ -2,7 +2,6 @@ package org.hotsix.job;
 
 import java.util.List;
 
-import javax.annotation.Resource;
 import javax.inject.Inject;
 
 import org.junit.Test;
