@@ -4,7 +4,7 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>AdminLTE 2 | Log in</title>
+    <title>Hotsix | Log in</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <!-- Bootstrap 3.3.4 -->
     <link href="/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -42,7 +42,7 @@
             <div class="col-xs-8">    
               <div class="checkbox icheck">
                 <label>
-                  <input type="checkbox"> Remember Me
+                  <input type="checkbox" name="chk" value="1"> Remember Me
                 </label>
               </div>                        
             </div><!-- /.col -->
@@ -53,17 +53,10 @@
         </form>
 
         <div class="social-auth-links text-center">
-          <p>- OR -</p>
-          <a href="#" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Sign in using Facebook</a>
-          <a href="#" class="btn btn-block btn-social btn-google-plus btn-flat"><i class="fa fa-google-plus"></i> Sign in using Google+</a>
         </div><!-- /.social-auth-links -->
-
-        <a href="#">I forgot my password</a><br>
-        <a href="#" class="text-center">Register a new membership</a>
 
       </div><!-- /.login-box-body -->
     </div><!-- /.login-box -->
-
     <!-- jQuery 2.1.4 -->
     <script src="/resources/plugins/jQuery/jQuery-2.1.4.min.js"></script>
     <!-- Bootstrap 3.3.2 JS -->
@@ -77,6 +70,16 @@
           radioClass: 'iradio_square-blue',
           increaseArea: '20%' // optional
         });
+      });
+      
+      $('.social-auth-links').on("click","a",function(event){
+    	  event.preventDefault();
+    	  var targetId = $(this).attr("href");
+    	  if(targetId == "regist"){
+    		  location.href="/member/regist";
+    	  }else if(targetId == "forgotPass"){
+    		  
+    	  }
       });
     </script>
   </body>

@@ -46,7 +46,7 @@
 				<div class="navbar-custom-menu">
 					<ul class="nav navbar-nav">
 						<div class="pull-left">
-							<a href="#" class="btn btn-default btn-flat"
+							<a href="/member/logout" class="btn btn-default btn-flat"
 								style="margin-top: 6px;">Sign out</a>
 						</div>
 						<!--                  </li>

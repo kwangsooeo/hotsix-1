@@ -46,7 +46,7 @@ public class ContentsController {
 		
 		service.deleteContents(vo);
 		
-		return "/suc/contentsSuccess[;";
+		return "/suc/contentsSuccess";
 	}
 	
 	//페이징

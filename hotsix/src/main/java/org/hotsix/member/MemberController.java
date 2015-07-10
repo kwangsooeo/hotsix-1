@@ -19,6 +19,8 @@ public class MemberController {
 	
 	@Inject
 	private MemberMapper mMapper;
+	@Inject
+	private HttpSession session;
 	
 	@RequestMapping(value="login",method= RequestMethod.GET)
 	public String memberLogin(){
@@ -47,5 +49,16 @@ public class MemberController {
 		Cookie ck = WebUtils.getCookie(request, "login");
 		System.out.println("userId : " + userId +"  cookie : "+ck);
 		return "/suc/loginSuccess";
+	}
+	
+	@RequestMapping("logout")
+	public String logOut(){
+		session.invalidate();
+		return "/suc/logoutSuccess";
+	}
+	
+	@RequestMapping(value = "regist", method = RequestMethod.GET)
+	public String memberRegistGet(){
+		return "/member/memberRegist";
 	}
 }
