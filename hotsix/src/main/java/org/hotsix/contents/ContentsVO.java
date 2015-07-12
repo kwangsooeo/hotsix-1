@@ -2,48 +2,44 @@ package org.hotsix.contents;
 
 import java.util.Date;
 
+import org.hotsix.job.JobVO;
+
 /*
  * 
  * create table tbl_contents(
 
      contentsNo int not null auto_increment,
-
-     link text not null,
-
      regdate CURRENT_TIMESTAMP not null default NOW,
-
-     primary key(contentsNo),
-
-     
+	 jobNo int not null,
+	 FOREGIN KEY(jobNo) REFERENCES tbl_job(jobNo)
      )
  */
-public class ContentsVO{
+public class ContentsVO extends JobVO{
 	
 	private int jobNo;
 	private int contentsNo;
-	private String title;
 	private String link;
 	private Date regdate;
 	
-	public Integer getJobNo() {
-		return jobNo;
-	}
-	public void setJobNo(int jobNo) {
-		this.jobNo = jobNo;
-	}
 	
+	
+	@Override
+	public int getJobNo() {
+		// TODO Auto-generated method stub
+		return super.getJobNo();
+	}
+	@Override
+	public void setJobNo(int jobNo) {
+		// TODO Auto-generated method stub
+		super.setJobNo(jobNo);
+	}
 	public int getContentsNo() {
 		return contentsNo;
 	}
 	public void setContentsNo(int contetnsNo) {
 		this.contentsNo = contetnsNo;
 	}
-	public String getTitle() {
-		return title;
-	}
-	public void setTitle(String title) {
-		this.title = title;
-	}
+	
 	public String getLink() {
 		return link;
 	}
@@ -58,11 +54,10 @@ public class ContentsVO{
 	}
 	@Override
 	public String toString() {
-		return "ContentsVO [contetnsNo=" + contentsNo + ", title=" + title
+		return "ContentsVO [jobNo=" + jobNo + ", contentsNo=" + contentsNo
 				+ ", link=" + link + ", regdate=" + regdate + "]";
 	}
+	
+	
 
-	
-	
-	
 }

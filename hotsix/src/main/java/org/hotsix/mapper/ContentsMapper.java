@@ -24,20 +24,22 @@ public interface ContentsMapper {
 	@Select("select jobNo, contentsNo, title, link from tbl_contents where contentsNo=#{no}")
 	public ContentsVO read(Integer no)throws Exception;	
 	
-	//리스트
-	@Select("select contesnt, contentsNo,title, regdate from tbl_contents where contentsNo > 0 order by regdate desc")
-	public List<ContentsVO> list()throws Exception;
+//	//리스트
+//	@Select("select contesnt, contentsNo,title, regdate from tbl_contents where contentsNo > 0 order by regdate desc")
+//	public List<ContentsVO> list()throws Exception;
 	
 	//수정
 	@Update("update tbl_contents set title=#{title}, link=#{link} where contentsNo=#{contentsNo}")
 	public void update(ContentsVO vo)throws Exception;
 	
 	//페이징
-	@Select("select contentsNo, title, regdate from tbl_contents where contentsNo > 0 order by contentsNo desc limit #{pageStart}, #{perPageNum}")
+	@Select("SELECT tc.contentsNo, tj.jobNo, tj.jobName, tc.regdate FROM tbl_contents AS tc INNER JOIN tbl_job AS tj ON tc.jobNo = tj.jobNo desc limit #{pageStart}, #{perPageNum}")
 	public List<ContentsVO> listPaging(Criteria cri)throws Exception;
 	
 	//전체 게시물 카운트
 	@Select("select count(contentsNo) totalCount from tbl_contents where contentsNo > 0")
 	public PageMaker countPaging(Criteria cri)throws Exception;
 	
+	//select contentsNo, title, regdate from tbl_contents where contentsNo > 0 order by contentsNo desc limit #{pageStart}, #{perPageNum}
+	//SELECT tc.contentsNo, tj.jobNo, tj.jobName, tc.regdate FROM tbl_contents AS tc INNER JOIN tbl_job AS tj ON tc.jobNo = tj.jobNo;
 }

@@ -31,7 +31,8 @@
 							<thead>
 								<tr>
 									<th>ContentsNo</th>
-									<th>title</th>
+									<th>jobNo</th>
+									<th>jobName</th>
 									<th>Registration Date</th>
 								</tr>
 							</thead>
@@ -39,7 +40,8 @@
 								<c:forEach items="${list}" var="list">
 									<tr class="task-list">
 										<th>${list.contentsNo}</th>
-										<th><span id="${list.contentsNo }">${list.title}</span></th>
+										<th>${list.jobNo }</th>
+										<th><span id="${list.contentsNo }">${list.jobName}</span></th>
 										<th>${list.regdate }</th>
 									<tr>
 								</c:forEach>

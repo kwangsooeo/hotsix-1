@@ -35,11 +35,11 @@ public class ContentsServiceImpl implements ContentsService {
 		return mapper.read(no);
 	}
 
-	@Override
-	public List<ContentsVO> list() throws Exception {
-		// TODO Auto-generated method stub
-		return mapper.list();
-	}
+//	@Override
+//	public List<ContentsVO> list() throws Exception {
+//		// TODO Auto-generated method stub
+//		return mapper.list();
+//	}
 
 	@Override
 	public void update(ContentsVO vo) throws Exception {

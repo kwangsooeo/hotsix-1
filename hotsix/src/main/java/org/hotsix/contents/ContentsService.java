@@ -15,7 +15,7 @@ public interface ContentsService {
 	
 	public ContentsVO readContents(Integer no)throws Exception;
 	
-	public List<ContentsVO> list() throws Exception;
+//	public List<ContentsVO> list() throws Exception;
 	
 	public void update(ContentsVO vo) throws Exception;
 	
