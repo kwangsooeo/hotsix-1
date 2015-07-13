@@ -16,9 +16,6 @@ public interface ContentsService {
 	//조회
 	public ContentsVO readContents(Integer no)throws Exception;
 
-	//동영상 ID삽입
-	public void insertVideoID(String[] ids) throws Exception;	
-	
 	//수정
 	public void update(ContentsVO vo) throws Exception;
 	//리스트

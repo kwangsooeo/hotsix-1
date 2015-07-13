@@ -12,6 +12,8 @@
 	<div class="content-wrapper">
 		<!-- Content Header (Page header) -->
 		<section class="content-header">
+		
+		<div id="player"></div>
 		<h1>Contents</h1>
 		<ol class="breadcrumb">
 			<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -39,6 +41,7 @@
 		<!--Contetns-->
 		
 		<section class="content">
+		
 		<div class="row">
 			<div class="col-xs-12">
 				<div class="box">
@@ -105,15 +108,6 @@
 		</div>
 		</section>
 	</div>
-	<!-- /.content-wrapper -->
-
-	<%-- <form id="jobForm">
-		<input type='hidden' name='contentsNo'> 
-		<input type='hidden'name='page' value='${cri.page }'> 
-		<input type='hidden'name='perPageNum' value='${cri.perPageNum }'> 
-		<input type='hidden' name='displayPageNum' value='${cri.displayPageNum }'>
-	</form> --%>
-	
 	
 	<!--Javascript  -->
 
@@ -151,52 +145,62 @@
 		});
 		
 		
-		/*Youtube 동영상 ID 넣기*/
+		//YouTube API
 		var tag = document.createElement('script');
-		
-		tag.src = "https://www.youtube.com/iframe_api";
-		var firstScriptTag = document.getElementsByTagName('script')[0];
-		firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-		
-		function onYouTubeIframeAPIReady() {
-	        player = new YT.Player('player', {
-	            height: '390',
-	            width: '640',
-	            events: {
-	                'onStateChange': onPlayerStateChange
-	            },
-	            playerVars: {
-	                'autoplay': 1,
-	                'listType': 'search',
-	                'list': '${list.jobName}'
 
-	            }
-	        });
-	    }
+    tag.src = "https://www.youtube.com/iframe_api";
+    var firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-	    // 5. The API calls this function when the player's state changes.
-	    //    The function indicates that when playing a video (state=1),
-	    //    the player should play for six seconds and then stop.
-	    var done = false;
+    // 3. This function creates an <iframe> (and YouTube player)
+    //    after the API code downloads.
+    var player;
+    var dddd = document.getElementByTagName("span");
+    
+    function onYouTubeIframeAPIReady() {
+        player = new YT.Player('player', {
+            height: '390',
+            width: '640',
+            events: {
+                'onReady': onPlayerReady,
+                'onStateChange': onPlayerStateChange
+            },
+            playerVars: {
+                'autoplay': 1,
+                'listType': 'search',
+                'list': dddd
 
-	    function onPlayerStateChange(event) {
-	        if (event.data == YT.PlayerState.PLAYING && !done) {
-	            setTimeout(stopVideo, 6000);
-	            done = true;
-	        }
-	        var ids = new Array();
+            }
+        });
+    }
 
-	        ids = event.target.B.playlist;
+    // 4. The API will call this function when the video player is ready.
+    function onPlayerReady(event) {
+        event.target.playVideo();
+    }
 
-	        console.log(ids);
+    // 5. The API calls this function when the player's state changes.
+    //    The function indicates that when playing a video (state=1),
+    //    the player should play for six seconds and then stop.
+    var done = false;
 
-	        console.log(event.target.B.playlist);
-	    }
-	    function stopVideo() {
-	        player.stopVideo();
-	    }
-		
-		
+    function onPlayerStateChange(event) {
+        if (event.data == YT.PlayerState.PLAYING && !done) {
+            setTimeout(stopVideo, 6000);
+            done = true;
+        }
+        var ids = new Array();
+
+        ids = event.target.B.playlist;
+
+
+        console.log(ids);
+
+        console.log(event.target.B.playlist);
+    }
+    function stopVideo() {
+        player.stopVideo();
+    }
 		
 	</script>
 </body>

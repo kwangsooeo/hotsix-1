@@ -30,8 +30,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<select id="countPaging" resultType="org.hotsix.page.PageMaker">
 		SELECT count(contentsNo)
-		totalCount FROM tbl_contents where contentsNo
-		> 0
+		totalCount FROM tbl_contents where contentsNo> 0
 		<include refid="searchSQL" />
 	</select>
 </mapper>
