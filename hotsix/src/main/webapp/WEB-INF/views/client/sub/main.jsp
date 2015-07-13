@@ -9,6 +9,8 @@
 	.hideDiv{
 		display:none;
 	}
+	.boarderStyle{
+	}
 </style>
 </head>
 <body>
@@ -17,8 +19,8 @@
 
 <button class="hideDiv" id="hideBtn" style="position: absolute; z-index: 101; left: 0; top: 0; margin-left: 90%;">X</button>
 <iframe src="http://localhost:8080/notice/list" class="MainFrame hideDiv" style="position: absolute; z-index:100; left:0; top:0; margin-left:10%; width: 80%; height: 100%;" frameborder="0" scrolling="yes" onload="autoResize(this)"></iframe>
-<iframe class="MainFrame hideDiv" style="position: absolute; background:rgba(255, 255, 255, .8); z-index:90; left:0; top:0; width: 100%; height: 100%;" frameborder="0" scrolling="yes" onload="autoResize(this)"></iframe>
-
+<iframe class="MainFrame hideDiv" id="sideFrame" style="position: absolute; background:rgba(72, 72, 72, .5); z-index:90; left:0; top:0; width: 100%; height: 100%;" frameborder="0" scrolling="yes" onload="autoResize(this)"></iframe>
+<input type="text" size="4" id="search" style="position: absolute; z-index: 2; top: 3%; right: 0px; margin-right: 2%;">
 <script src="https://www.googleapis.com/youtube/v3/playlists"></script>
 <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
 <script>
@@ -29,6 +31,11 @@
 	});
 	$('#hideBtn').on("click", function(event){
 		event.preventDefault();
+		$('#hideBtn').toggleClass("hideDiv");
+		$('.MainFrame').toggleClass("hideDiv");
+	});
+	$('#sideFrame').on("click", function(){
+		console.log('ddd');
 		$('#hideBtn').toggleClass("hideDiv");
 		$('.MainFrame').toggleClass("hideDiv");
 	});

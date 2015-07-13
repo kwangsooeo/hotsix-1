@@ -14,7 +14,6 @@ a:active {text-decoration:none; color:black;}
 a:hover{text-decoration:none; color:black;}
 </style>
 </head>
-<body >
 <div class="content-wrapper">
 	<!-- Content Header (Page header) -->
 	<section class="content-header">
@@ -164,14 +163,8 @@ a:hover{text-decoration:none; color:black;}
 		noticeForm.find("input[name='noticeNo']").remove();
 		noticeForm.find("input[name='page']").val(1);
 		noticeForm.attr("action","/notice/list").attr("method","get");
-		
-		
 	});
-	
-	
-	
 </script>
 
-</body>
 <%@include file="../include/footer.jsp"%>
 </html>
