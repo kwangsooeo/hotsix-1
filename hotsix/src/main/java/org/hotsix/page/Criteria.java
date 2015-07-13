@@ -14,6 +14,12 @@ public class Criteria {
 	private int NoticeNo;
 	private int menteeNo;
 	
+	private int parent;
+	private String searchType;
+	private String keyword;
+	private String qnaType;
+	private int qnaStatus;
+	
 	public int getContentsNo() {
 		return contentsNo;
 	}
@@ -26,11 +32,7 @@ public class Criteria {
 	public void setMenteeNo(int menteeNo) {
 		this.menteeNo = menteeNo;
 	}
-	private int parent;
-	private String searchType;
-	private String keyword;
-	private String qnaType;
-	private int qnaStatus;
+	
 
 	public int getQnaStatus() {
 		return qnaStatus;

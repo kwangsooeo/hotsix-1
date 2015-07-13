@@ -18,6 +18,26 @@
 			<li class="subPage active">Contents</li>
 		</ol>
 		</section>
+		
+		<!--Search Select  -->
+		<form id="jobForm">
+			<input type='hidden' name='contentsNo'> 
+			<input type='hidden'name='page' value='${cri.page }'> 
+			<input type='hidden'name='perPageNum' value='${cri.perPageNum }'> 
+			<input type='hidden' name='displayPageNum' value='${cri.displayPageNum }'>
+		
+		
+		<select name="searchType">
+			<option value="n">----</option>
+			<option value="jobName"<c:out value="${cri.searchType eq 'jobName'?'selected':''}"/>>JobName</option>
+			<option value="jobNo"<c:out value="${cri.searchType eq 'jobNo'?'selected':''}"/>>JobNo</option>
+		</select>
+		<input type="text" name='keyword' id="keywordInput" value='${cri.keyword}'>
+		<button id='searchBtn'>Search</button>
+		</form>
+		
+		<!--Contetns-->
+		
 		<section class="content">
 		<div class="row">
 			<div class="col-xs-12">
@@ -87,12 +107,15 @@
 	</div>
 	<!-- /.content-wrapper -->
 
-	<form id="jobForm">
+	<%-- <form id="jobForm">
 		<input type='hidden' name='contentsNo'> 
 		<input type='hidden'name='page' value='${cri.page }'> 
 		<input type='hidden'name='perPageNum' value='${cri.perPageNum }'> 
 		<input type='hidden' name='displayPageNum' value='${cri.displayPageNum }'>
-	</form>
+	</form> --%>
+	
+	
+	<!--Javascript  -->
 
 	<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
 
@@ -118,6 +141,13 @@
 
 				targetForm.attr("action","/contents/contentsReadPage").attr("method", "get");
 				targetForm.submit();
+		});
+		
+		$("#searchBtn").on("click", function(event){
+			var jobForm = $("#jobForm");
+			jobForm.find("input[name='bno']").remove();
+			jobForm.find("[name='page']").val(1);
+			jobForm.attr("action","/contents/contentsListCri").attr("method","get");
 		});
 		
 	</script>
