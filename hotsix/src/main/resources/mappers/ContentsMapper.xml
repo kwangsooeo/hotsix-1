@@ -15,8 +15,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				and title like CONCAT('%',#{keyword},'%')
 			</if>
 		</if>
-
 	</sql>
+
 
 	<select id="listPaging" resultType="org.hotsix.contents.ContentsVO">
 		SELECT tc.contentsNo, tj.jobNo, tj.jobName, tc.regdate FROM
