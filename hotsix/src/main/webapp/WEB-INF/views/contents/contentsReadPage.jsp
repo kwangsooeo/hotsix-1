@@ -50,7 +50,7 @@ pageEncoding="UTF-8"%>
 
                     <span class="time"><i class="fa fa-clock-o"></i>${contentsVO.regdate}</span>
 
-                    <h3 class="timeline-header">${contentsVO.title}</h3>
+                    <h3 class="timeline-header">${contentsVO.link}</h3>
 
                     <div class="timeline-body">
 

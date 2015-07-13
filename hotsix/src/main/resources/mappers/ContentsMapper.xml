@@ -6,7 +6,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="org.hotsix.mapper.ContentsMapper">
 
 	<sql id="searchSQL">
-		<if test="searchType" ! null ">
+		<if test="searchType != null">
 			<if test="searchType eq 'jobName'.toString()">
 				and title like CONCAT('%', #{keyword},'%')
 			</if>
@@ -15,22 +15,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				and title like CONCAT('%',#{keyword},'%')
 			</if>
 		</if>
-		
+
 	</sql>
-	
-	<select id="listPaging" resultType="org.hotsix.model.ContentsVO">
+
+	<select id="listPaging" resultType="org.hotsix.contents.ContentsVO">
 		SELECT tc.contentsNo, tj.jobNo, tj.jobName, tc.regdate FROM
 		tbl_contents AS tc
 		INNER JOIN tbl_job AS tj ON tc.jobNo = tj.jobNo
 
-		<include refid="searchSQL"/>
+		<include refid="searchSQL" />
 		order by jobNo
 		desc limit #{pageStart}, #{perPageNum}
 	</select>
 
 	<select id="countPaging" resultType="org.hotsix.page.PageMaker">
 		SELECT count(contentsNo)
-		totalCount FROM tbl_contents where contentsNo > 0
-		<include refid="searchSQL"/>
+		totalCount FROM tbl_contents where contentsNo
+		> 0
+		<include refid="searchSQL" />
 	</select>
 </mapper>

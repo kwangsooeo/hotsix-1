@@ -150,6 +150,54 @@
 			jobForm.attr("action","/contents/contentsListCri").attr("method","get");
 		});
 		
+		
+		/*Youtube 동영상 ID 넣기*/
+		var tag = document.createElement('script');
+		
+		tag.src = "https://www.youtube.com/iframe_api";
+		var firstScriptTag = document.getElementsByTagName('script')[0];
+		firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+		
+		function onYouTubeIframeAPIReady() {
+	        player = new YT.Player('player', {
+	            height: '390',
+	            width: '640',
+	            events: {
+	                'onStateChange': onPlayerStateChange
+	            },
+	            playerVars: {
+	                'autoplay': 1,
+	                'listType': 'search',
+	                'list': '${list.jobName}'
+
+	            }
+	        });
+	    }
+
+	    // 5. The API calls this function when the player's state changes.
+	    //    The function indicates that when playing a video (state=1),
+	    //    the player should play for six seconds and then stop.
+	    var done = false;
+
+	    function onPlayerStateChange(event) {
+	        if (event.data == YT.PlayerState.PLAYING && !done) {
+	            setTimeout(stopVideo, 6000);
+	            done = true;
+	        }
+	        var ids = new Array();
+
+	        ids = event.target.B.playlist;
+
+	        console.log(ids);
+
+	        console.log(event.target.B.playlist);
+	    }
+	    function stopVideo() {
+	        player.stopVideo();
+	    }
+		
+		
+		
 	</script>
 </body>
 <%@include file="../include/footer.jsp"%>

@@ -21,16 +21,8 @@ public class ContentsController {
 	private ContentsService service;
 
 	
-	//등록
-	@RequestMapping(value = "/contentsRegist" , method = RequestMethod.GET)
-	public void registGET()throws Exception{
-		logger.info("등록");
-	}
-	
 	@RequestMapping(value="/contentsRegist", method = RequestMethod.POST)
 	public String registPOST(@ModelAttribute("cri")Criteria cri, ContentsVO contents, Model model)throws Exception{
-		logger.info("POST 방식으로 등록");
-		logger.info(contents.toString());
 		
 		service.regContents(contents);
 		

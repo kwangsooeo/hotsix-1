@@ -24,6 +24,10 @@ public interface ContentsMapper {
 	@Select("select jobNo, contentsNo, title, link from tbl_contents where contentsNo=#{no}")
 	public ContentsVO read(Integer no)throws Exception;	
 	
+	//동영상 ID삽입.
+	@Insert("insert into tbl_link (link) values(#{link})")
+	public void insertVideoID(String ids) throws Exception;	
+	
 	//수정
 	@Update("update tbl_contents set title=#{title}, link=#{link} where contentsNo=#{contentsNo}")
 	public void update(ContentsVO vo)throws Exception;
