@@ -33,12 +33,11 @@
 		display:none;
 	}
 	       #page .frame {
-	       		z-index:-1;
 	       		position:absolute;
-                width: 96%;
-                height:95%;
-                margin: 2% 2% 2% 2%;
-                padding: 8% 0 8% 0;
+                width: 98%;
+                height:96.5%;
+                margin: 1% 1% 1% 1%;
+                padding: 8% 0 6% 0;
                 border: 8px solid #ffec00;
             }
             
@@ -124,6 +123,7 @@
 		    -webkit-animation-name: fadeInDown; 
 		    animation-name: fadeInDown; 
 		}
+		
         .side_menu ul li{
                 list-style-type: none;
         }
@@ -191,9 +191,7 @@
         </div>
     </div>
 	<div class="frame">
-    <div id="player">
-  
-    </div>
+    <div id="player"></div>
     </div>
 </div>
 </div>
@@ -207,6 +205,7 @@
 <form id="searchForm">
 	<input type="hidden" name="searchData">
 </form>
+
 <script>
 	$('.logo').on("click", function(event){
 		event.preventDefault();
@@ -298,7 +297,9 @@
     
     function onYouTubeIframeAPIReady() {
         player = new YT.Player('player', {
-            playerVars:{
+        	height: '720',
+            width: '1280',
+        	playerVars:{
             	'playlist' : play
             },
             events:{

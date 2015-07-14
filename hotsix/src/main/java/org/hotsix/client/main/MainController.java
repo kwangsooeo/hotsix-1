@@ -16,7 +16,7 @@ public class MainController {
 	public String mainPage(String searchData ,Model model){
 		System.out.println(searchData);
 		List<String> list = new ArrayList<>();
-		if(searchData.equals("")){
+		if(searchData == null|| searchData.equals("")){
 			list.add("JgC0byKDoZ0");
 			model.addAttribute("link", list);
 			System.out.println("빈값들어감");
