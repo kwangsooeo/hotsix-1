@@ -46,9 +46,7 @@ div {
 <br><br>
 <div class="media">
   <div class="media-left">
-    <a href="#">
       <img class="media-object" style="width: 200px" src="/resources/dist/img/그림1.png" alt="이미지를 불러오지 못했습니다.">
-    </a>
   </div>
   <div class="media-body">
     <h2 class="media-heading">멘토링</h2>
@@ -62,16 +60,12 @@ div {
           개인 쪽지, 전체쪽지
   </div>
   <div class="media-right">
-    <a href="#">
       <img class="media-object" style="width: 200px" src="/resources/dist/img/그림2.png" alt="이미지를 불러오지 못했습니다.">
-    </a>
   </div>
 </div>
 <div class="media">
   <div class="media-left">
-    <a href="#">
       <img class="media-object" style="width: 200px" src="/resources/dist/img/tv.png" alt="이미지를 불러오지 못했습니다.">
-    </a>
   </div>
   <div class="media-body">
     <h2 class="media-heading">Web TV</h2>
@@ -85,9 +79,7 @@ div {
     멘토링, 쪽지, TV를 제외한 내가 필요한 기사들만
   </div>
   <div class="media-right">
-    <a href="#">
       <img class="media-object" style="width: 200px" src="/resources/dist/img/news.png" alt="이미지를 불러오지 못했습니다.">
-    </a>
   </div>
 </div>
 </div>

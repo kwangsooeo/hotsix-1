@@ -117,14 +117,23 @@
 <iframe class="MainFrame hideDiv" id="sideFrame" style="position: absolute; background:rgba(72, 72, 72, .5); z-index:90; left:0; top:0; width: 100%; height: 100%;" frameborder="0" scrolling="yes" onload="autoResize(this)"></iframe>
 <script src="https://www.googleapis.com/youtube/v3/playlists"></script>
 <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+<form id="searchForm">
+	<input type="hidden" name="searchData">
+</form>
 <script>
-	var play = "요리사";
-	var tag = document.createElement('script');
-
-    tag.src = "https://www.youtube.com/iframe_api";
-    var firstScriptTag = document.getElementsByTagName('script')[0];
-    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-	
+	var play = new Array();
+	playSplit = "${link}".split("[");
+	playSplit2 = playSplit[1].split("]");
+	play = playSplit2[0];
+    console.log(play);
+    $('#searchBox').on("keypress", function(event){
+		if(event.keyCode==13){
+			var test = $(this).val();
+			$('#searchForm').find("[name=searchData]").val(test);
+			$('#searchForm').attr("action", "/hotsix/main").attr("method", "post").submit();
+		}
+	});
+    
     var player;
 	$('.borderStyle').on("click", function(){
 		$(this).attr("size", 12);
@@ -147,12 +156,21 @@
 		$('#hideBtn').toggleClass("hideDiv");
 		$('.MainFrame').toggleClass("hideDiv");
 	});
+	
+    var tag = document.createElement('script');
+
+    tag.src = "https://www.youtube.com/iframe_api";
+    var firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+   
+    function start(){
+    	alert("스타트");
+    }
     
     function onYouTubeIframeAPIReady() {
         player = new YT.Player('player', {
             playerVars:{
-                'listType':'search',
-                'list': '직업 ' + play
+            	'playlist' : play
             },
             events:{
             	'autoplay' : '1',
@@ -161,13 +179,7 @@
             }
         });
     }
-    $('#searchBox').on("keypress", function(event){
-		if(event.keyCode==13){
-			play = $(this).val();
-			console.log(play);
-			playVideo();
-		}    		
-	});
+   
     function playVideo(){
     	player.playVideo();
     }
@@ -180,13 +192,11 @@
             console.log(event);
             console.log(event.target.B.playlist);
             done = true;
-            
         }
     }
     function stopVideo() {
         player.stopVideo();
     }
-
 </script>
 </body>
 </html>
