@@ -17,17 +17,25 @@ public class MainController {
 		System.out.println(searchData);
 		List<String> list = new ArrayList<>();
 		if(searchData == null|| searchData.equals("")){
-			list.add("JgC0byKDoZ0");
-			model.addAttribute("link", list);
-			System.out.println("빈값들어감");
-		}else{
+			list.add("1ukHX-1mUc0");
 			list.add("R9sy2WcxHcY");
-			list.add("PyLMLqBxK-c");
-			list.add("JgC0byKDoZ0");
-			list.add("rg2LPC6GN0I");
-			list.add("CBd3b4FR5RM");
-			model.addAttribute("link", list);
+		}else if(searchData.equals("교사") || searchData.equals("선생님")){
+			list.add("Bi1qs0D9SVE");
+			list.add("b7USKW-Db2o");
+		}else if(searchData.equals("셰프") || searchData.equals("요리사")){
+			list.add("FVS22aC8BV4");
+			list.add("6hmaCRXz358");
+			list.add("9lvr4uAqzKo");
+		}else if(searchData.equals("변호사") || searchData.equals("변호")){
+			list.add("kDw6bLs6l98");
+			list.add("Pfst9EG2aZM");
+			list.add("pOcEYz9ifos");
+		}else if(searchData.equals("pd") || searchData.equals("프로듀서")){
+			list.add("EYgL1oiUozM");
+			list.add("toLz3r0qYhg");
 		}
+		
+		model.addAttribute("link", list);
 		return "/client/sub/main";
 	}
 	
@@ -36,15 +44,4 @@ public class MainController {
 		return "/client/main/introduce";
 	}
 	
-	@RequestMapping("search")
-	public String youtubeLink(Model model){
-		List<String> list = new ArrayList<>();
-		list.add("R9sy2WcxHcY");
-		list.add("PyLMLqBxK-c");
-		list.add("JgC0byKDoZ0");
-		list.add("7m-dnk9jm2E");
-		list.add("yiUvchj9Xfg");
-		model.addAttribute("link", list);
-		return "/client/sub/main";
-	}
 }

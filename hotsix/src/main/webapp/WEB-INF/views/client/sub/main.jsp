@@ -85,14 +85,16 @@
         body{
             overflow: hidden;
         }
+        
         .side_menu{
-        	float: right;
+        	float:right;
         	margin-top:3px;
         	margin-right: 2.65%;
         	background-color: white;
         	border-radius: 10px 0 60px 60px / 10px 0 60px 60px; 
         	padding-right: 5%;
         }
+        
         .animatedIn{
 	        -webkit-animation-duration: 1s; 
 	    	animation-duration: 1s; 
@@ -157,6 +159,7 @@
 		        transform: translateY(-20px); 
 		    } 
 		} 
+		
 		.fadeOutUp { 
 		    -webkit-animation-name: fadeOutUp; 
 		    animation-name: fadeOutUp; 
@@ -223,7 +226,17 @@
 			$('#hideBtn').toggleClass("hideDiv");
 			$('.MainFrame').toggleClass("hideDiv");
 		}else if(targetHref == "notice"){
-			alert("notice 클릭됨");
+			$('#mainFrame').attr("src","http://localhost:8080/hotsix/intro");
+			$('#hideBtn').toggleClass("hideDiv");
+			$('.MainFrame').toggleClass("hideDiv");
+		}else if(targetHref == "qna"){
+			$('#mainFrame').attr("src","http://localhost:8080/hotsix/intro");
+			$('#hideBtn').toggleClass("hideDiv");
+			$('.MainFrame').toggleClass("hideDiv");
+		}else if(targetHref == "mento"){
+			$('#mainFrame').attr("src","http://localhost:8080/hotsix/intro");
+			$('#hideBtn').toggleClass("hideDiv");
+			$('.MainFrame').toggleClass("hideDiv");
 		}
 	});
 	
@@ -299,13 +312,12 @@
     
     function onYouTubeIframeAPIReady() {
         player = new YT.Player('player', {
-        	height: '720',
-            width: '1280',
+        	'autoplay' : '1',
         	playerVars:{
             	'playlist' : play
             },
             events:{
-            	'autoplay' : '1',
+            	
                 'onReady': onPlayerReady,
                 'onStateChange' : onPlayerStateChange
             }
