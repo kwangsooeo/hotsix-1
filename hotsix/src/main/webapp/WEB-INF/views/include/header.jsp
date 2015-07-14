@@ -86,6 +86,7 @@
 					<li class="menteePage"><a href="menteePage"><i class='fa fa-link'></i><span>Mentee</span></a></li>
 					<li class="contents"><a href="contents"><i class='fa fa-link'></i> <span>Contents</span></a></li>
 					<li class="jobManage"><a href="jobManage"><i class='fa fa-link'></i> <span>JobManage</span></a></li>
+					<li class="message"><a href="message"><i class='fa fa-link'></i> <span>Message</span></a></li>
 				</ul>
 				<!-- /.sidebar-menu -->
 			</section>
