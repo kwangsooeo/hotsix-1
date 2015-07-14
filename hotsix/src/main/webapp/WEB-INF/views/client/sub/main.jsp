@@ -66,6 +66,8 @@
             width: 98%;
             height: 10%;
             margin: 2.5% 2% 0 2%;
+            z-index:10;
+            
         }
 
         .top_bar{
@@ -232,7 +234,7 @@
 		$('.side_menu').removeClass("fadeInDown");
 		$('.side_menu').removeClass("animatedIn");
 		setTimeout(function(){$('.side_menu').addClass("hideDiv")},1000);
-		$('#menuHide').attr("id", "menuShow");
+		$('#menuHide').attr("id", "menuShow"); 	
 	});
 	
 	$('.menu_bar').on("click","#menuShow", function(){
