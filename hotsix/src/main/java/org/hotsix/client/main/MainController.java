@@ -7,10 +7,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/hotsix/*")
 public class MainController {
 
-	
 	@RequestMapping("main")
 	public String mainPage(){
 		
 		return "/client/sub/main";
+	}
+	
+	@RequestMapping("intro")
+	public String siteIntro(){
+		return "/client/main/introduce";
 	}
 }
