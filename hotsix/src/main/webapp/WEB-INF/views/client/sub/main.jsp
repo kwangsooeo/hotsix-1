@@ -37,7 +37,7 @@
                 width: 98%;
                 height:96.5%;
                 margin: 1% 1% 1% 1%;
-                padding: 8% 0 6% 0;
+                padding: 9% 0 6% 0;
                 border: 8px solid #ffec00;
             }
             
@@ -213,7 +213,7 @@
 </form>
 
 <script>
-	$('.logo').on("click", function(event){
+	$('.logo a img').on("click", function(event){
 		event.preventDefault();
 		$('#searchForm').find("[name=searchData]").val("");
 		$('#searchForm').attr("action", "/hotsix/main").attr("method", "post").submit();
@@ -318,7 +318,6 @@
             	'playlist' : play
             },
             events:{
-            	
                 'onReady': onPlayerReady,
                 'onStateChange' : onPlayerStateChange
             }
