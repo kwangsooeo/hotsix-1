@@ -58,7 +58,7 @@
             height: 100%;
             position: absolute;
             top: 0;
-            left: 0;
+            left: 0;	
         }
         
         .top{
@@ -81,6 +81,19 @@
             right: 0;
             top: 0;
         }
+        body:before {
+	    content: "";
+	    position: fixed;
+	    top: -10px;
+	    left: 0;
+	    width: 100%;
+	    height: 10px;
+	
+	    -webkit-box-shadow: 0px 0px 10px rgba(0,0,0,.8);
+	    -moz-box-shadow: 0px 0px 10px rgba(0,0,0,.8);
+	    box-shadow: 0px 0px 10px rgba(0,0,0,.8);
+	    z-index: 100;
+		}
 
         body{
             overflow: hidden;
@@ -91,8 +104,8 @@
         	margin-top:3px;
         	margin-right: 2.65%;
         	background-color: rgba(34, 172, 56, 0.5);
-        	border-top: 50px solid ;
-        	border-bottom:  70px solid ; 
+        	border-top: 50px;
+        	border-bottom:  70px; 
         	padding-right: 5%;
         }
         
