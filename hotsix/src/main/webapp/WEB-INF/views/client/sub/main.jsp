@@ -89,8 +89,9 @@
         	float: right;
         	margin-top:3px;
         	margin-right: 2.65%;
-        	background-color: white;
-        	border-radius: 10px 0 60px 60px / 10px 0 60px 60px; 
+        	background-color: rgba(34, 172, 56, 0.5);
+        	border-top: 50px solid ;
+        	border-bottom:  70px solid ; 
         	padding-right: 5%;
         }
         .animatedIn{
