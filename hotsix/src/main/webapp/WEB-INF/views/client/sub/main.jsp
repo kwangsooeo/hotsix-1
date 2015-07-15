@@ -37,7 +37,7 @@
                 width: 98%;
                 height:96.5%;
                 margin: 1% 1% 1% 1%;
-                padding: 8% 0 6% 0;
+                padding: 9% 0 6% 0;
                 border: 8px solid #ffec00;
             }
             
@@ -90,8 +90,9 @@
         	float:right;
         	margin-top:3px;
         	margin-right: 2.65%;
-        	background-color: white;
-        	border-radius: 10px 0 60px 60px / 10px 0 60px 60px; 
+        	background-color: rgba(34, 172, 56, 0.5);
+        	border-top: 50px solid ;
+        	border-bottom:  70px solid ; 
         	padding-right: 5%;
         }
         
@@ -212,7 +213,7 @@
 </form>
 
 <script>
-	$('.logo').on("click", function(event){
+	$('.logo a img').on("click", function(event){
 		event.preventDefault();
 		$('#searchForm').find("[name=searchData]").val("");
 		$('#searchForm').attr("action", "/hotsix/main").attr("method", "post").submit();
@@ -317,7 +318,6 @@
             	'playlist' : play
             },
             events:{
-            	
                 'onReady': onPlayerReady,
                 'onStateChange' : onPlayerStateChange
             }
