@@ -20,7 +20,7 @@ public class ContentsController {
 	@Inject
 	private ContentsService service;
 
-	
+	//등록
 	@RequestMapping(value="/contentsRegist", method = RequestMethod.POST)
 	public String registPOST(@ModelAttribute("cri")Criteria cri, ContentsVO contents, Model model)throws Exception{
 		
@@ -43,15 +43,15 @@ public class ContentsController {
 	
 	//페이징
 	@RequestMapping(value="/contentsListCri", method = RequestMethod.GET)
-	public void listPaging(@ModelAttribute("cri")Criteria cri , Model model)throws Exception{
+	public void listPaging(@ModelAttribute("cri")Criteria cri ,String ids, Model model)throws Exception{
 		model.addAttribute("list", service.listPaging(cri));
 		model.addAttribute("pageMaker",service.countPaging(cri).calcPage(cri));
+		service.insertVideoID(ids);
 	}
 	
 	//페이징-조회
 	@RequestMapping(value="/contentsReadPage", method=RequestMethod.GET)
 	public void readPaging(@ModelAttribute("cri")Criteria cri, Model model)throws Exception{
-		
 		model.addAttribute(service.readContents(cri.getContentsNo()));
 	}
 	
@@ -67,8 +67,16 @@ public class ContentsController {
 	public String modifyPOST(@ModelAttribute("cri")Criteria cri, ContentsVO vo, Model model)throws Exception{
 		
 		service.update(vo);
-		
 		return "/suc/contentsSuccess";
+		
 	}
+	
+	//동영상 ID 삽입(POST)
+	@RequestMapping(value="/insertID", method=RequestMethod.POST)
+	public void insertID(@ModelAttribute("cri")Criteria cri, String ids, Model model)throws Exception{
+		
+		service.insertVideoID(ids);
+	}
+	
 	
 }

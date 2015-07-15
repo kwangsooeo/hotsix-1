@@ -60,6 +60,12 @@ public class ContentsServiceImpl implements ContentsService {
 		return mapper.countPaging(cri);
 	}
 
+	@Override
+	public void insertVideoID(String link) throws Exception {
+		// TODO Auto-generated method stub
+		mapper.insertVideoID(link);
+	}
+
 	
 
 }
