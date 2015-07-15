@@ -36,52 +36,69 @@ div {
 
 </head>
 <body>
-<div style="margin:20px 15% 20px 15%"> 
-<h1 >서비스 소개</h1>
-<p>
-청소년이 궁금하고 알고싶고 체험하고싶은 
-<br>
-직업 종사자와의 매칭 서비스
-</p>
-<br><br>
-<div class="media">
-  <div class="media-left">
-      <img class="media-object" style="width: 200px" src="/resources/dist/img/그림1.png" alt="이미지를 불러오지 못했습니다.">
-  </div>
-  <div class="media-body">
-    <h2 class="media-heading">멘토링</h2>
-    멘티들이 원하는 직업에서 현재 종사중이거나, 과거 종사한 멘토들과의 멘토링.
-  </div>
-</div>
-<br><br>
-<div class="media">
-  <div class="media-body">
-    <h2 class="media-heading">멘토쪽지</h2>
-          개인 쪽지, 전체쪽지
-  </div>
-  <div class="media-right">
-      <img class="media-object" style="width: 200px" src="/resources/dist/img/그림2.png" alt="이미지를 불러오지 못했습니다.">
-  </div>
-</div>
-<div class="media">
-  <div class="media-left">
-      <img class="media-object" style="width: 200px" src="/resources/dist/img/tv.png" alt="이미지를 불러오지 못했습니다.">
-  </div>
-  <div class="media-body">
-    <h2 class="media-heading">Web TV</h2>
-    하고자하는 직업군을 직접 찾지 않고 TV를 보듯이...
-  </div>
-</div>
-<div class="media">
-	
-  <div class="media-body">
-    <h2 class="media-heading">뉴스</h2>
-    멘토링, 쪽지, TV를 제외한 내가 필요한 기사들만
-  </div>
-  <div class="media-right">
-      <img class="media-object" style="width: 200px" src="/resources/dist/img/news.png" alt="이미지를 불러오지 못했습니다.">
-  </div>
-</div>
-</div>
+	<div class="modal-dialog"
+		style="left: 0; top: 0; width: 70%; height: 100%; margin: 20px 15% 20px 15%; ">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h1 class="modal-title">서비스 소개</h1>
+				<p>
+					청소년이 궁금하고 알고싶고 체험하고싶은 <br> 직업 종사자와의 매칭 서비스
+				</p>
+			</div>
+			<div class="modal-body">
+				<p>
+				<div class="media">
+					<div class="media-left">
+						<img class="media-object" style="width: 200px"
+							src="/resources/dist/img/그림1.png" alt="이미지를 불러오지 못했습니다.">
+					</div>
+					<div class="media-body">
+						<h2 class="media-heading">멘토링</h2>
+						멘티들이 원하는 직업에서 현재 종사중이거나, 과거 종사한 멘토들과의 멘토링.
+					</div>
+				</div>
+				<br>
+				<br>
+				<div class="media">
+					<div class="media-body">
+						<h2 class="media-heading">멘토쪽지</h2>
+						개인 쪽지, 전체쪽지
+					</div>
+					<div class="media-right">
+						<img class="media-object" style="width: 200px"
+							src="/resources/dist/img/그림2.png" alt="이미지를 불러오지 못했습니다.">
+					</div>
+				</div>
+				<div class="media">
+					<div class="media-left">
+						<img class="media-object" style="width: 200px"
+							src="/resources/dist/img/tv.png" alt="이미지를 불러오지 못했습니다.">
+					</div>
+					<div class="media-body">
+						<h2 class="media-heading">Web TV</h2>
+						하고자하는 직업군을 직접 찾지 않고 TV를 보듯이...
+					</div>
+				</div>
+				<div class="media">
+
+					<div class="media-body">
+						<h2 class="media-heading">뉴스</h2>
+						멘토링, 쪽지, TV를 제외한 내가 필요한 기사들만
+					</div>
+					<div class="media-right">
+						<img class="media-object" style="width: 200px"
+							src="/resources/dist/img/news.png" alt="이미지를 불러오지 못했습니다.">
+					</div>
+				</div>
+
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default pull-left"
+					data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-primary">Save changes</button>
+			</div>
+		</div>
+	</div>
+
 </body>
 </html>

@@ -96,6 +96,11 @@
         	padding-right: 5%;
         }
         
+        .radius{
+        	padding: 4% 0 4% 0;
+        	border-radius: 3px 3px 3px 3px / 3px 3px 3px 3px;
+        }
+        
         .animatedIn{
 	        -webkit-animation-duration: 1s; 
 	    	animation-duration: 1s; 
@@ -202,9 +207,10 @@
 </div>
 </div>
 
-<a href="#" class="hideDiv" id="hideBtn" style="position: absolute; z-index: 101; left: 0; top: 0; margin-left: 90%; width: 100px;"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
-<iframe src="" id="mainFrame" class="MainFrame hideDiv" style="position: absolute; z-index:100; left:0; top:0; margin-left:10%; width: 80%; height: 100%; background: white;" frameborder="0" scrolling="yes" onload="autoResize(this)"></iframe>
+<a href="#" class="hideDiv" id="hideBtn" style="position: absolute; z-index: 99; left: 0; top: 0; width: 100%; height: 100%;"><span class="" aria-hidden="true" style="font-size:2.5em;"></span></a>
 <iframe class="MainFrame hideDiv" id="sideFrame" style="position: absolute; background:rgba(72, 72, 72, .5); z-index:90; left:0; top:0; width: 100%; height: 100%;" frameborder="0" scrolling="yes" onload="autoResize(this)"></iframe>
+<iframe src="" id="mainFrame" class="MainFrame hideDiv radius" style="position: absolute; z-index:100; left:0; top:0; margin-top:5%; margin-left:20%; width: 60%; height: 90%; background: white;" frameborder="0" scrolling="yes" onload="autoResize(this)">
+</iframe>
 <script src="https://www.googleapis.com/youtube/v3/playlists"></script>
 <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
 
@@ -300,9 +306,12 @@
 		$('.MainFrame').toggleClass("hideDiv");
 	});
 	$('#sideFrame').on("click", function(){
-		console.log('ddd');
 		$('#hideBtn').toggleClass("hideDiv");
 		$('.MainFrame').toggleClass("hideDiv");
+	});
+	$('frame').on("click", ".MainFrame", function(){
+		alert("dasdas");
+		console.log("ddd");
 	});
 	
     var tag = document.createElement('script');
