@@ -52,13 +52,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</if>
 	</if>
 </sql>
-
+<sql id="faqSearchSQL">
+<if test="keyword != null">
+		and (title like CONCAT('%', #{keyword}, '%')
+		or contents like CONCAT('%', #{keyword}, '%'))
+</if>
+</sql>
 <select id='aList' resultType="org.hotsix.qna.QnAVO">
 	select tbl_qna.qnaNo qnaNo, tbl_qna.memberNo memberNo, tbl_member.id id, tbl_member.name name, tbl_qna.qna_type qna_type, tbl_qna.title title,
 	tbl_qna.contents contents, tbl_qna.regdate regdate, tbl_qna.parent parent, tbl_qna.depth depth, tbl_qna.replycnt replycnt 
 	from tbl_qna inner join tbl_member
 	on tbl_qna.memberNo = tbl_member.memberNo
-	where depth='a'
+	where depth='a' and tbl_member.memberNo!=34
 	<include refid="statusSQL"></include>
 	<include refid="qnatypeSQL"></include>
 	<include refid="searchSQL"></include>
@@ -70,9 +75,28 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	select count(*) totalCount 
 	from tbl_qna inner join tbl_member
 	on tbl_qna.memberNo = tbl_member.memberNo
-	where depth='a'
+	where depth='a' and tbl_member.memberNo!=34
 	<include refid="statusSQL"></include><include refid="qnatypeSQL"></include>
 	<include refid="searchSQL"></include>
 	
 </select>
+
+<select id="faqList" resultType="org.hotsix.qna.QnAVO">
+	select qnaNo, qna_type, title, contents, regdate 
+	from tbl_qna 
+	where memberNo=34 and depth='a' 
+	<include refid="qnatypeSQL"></include>
+	<include refid="faqSearchSQL"></include>
+	order by parent desc 
+	limit #{pageStart}, #{perPageNum};
+</select>
+
+<select id='faqTotal' resultType="org.hotsix.page.PageMaker">
+	select count(*) totalCount 
+	from tbl_qna
+	where memberNo=34 and depth='a' 
+	<include refid="qnatypeSQL"></include>
+	<include refid="faqSearchSQL"></include>
+</select>
+
 </mapper>

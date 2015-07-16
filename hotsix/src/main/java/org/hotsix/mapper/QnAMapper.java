@@ -21,14 +21,18 @@ public interface QnAMapper {
 	public List<QnAVO> bList(int qnaNo) throws Exception;
 
 	@Delete("delete from tbl_qna where qnaNo=#{qnaNo}")
-	public void delete(int qnaNo) throws Exception;	//°øÅë
+	public void delete(int qnaNo) throws Exception;	//ê³µí†µ
 	
 	@Delete("delete from tbl_qna where parent=#{qnaNo} and depth='b' and qnaNo>0")
 	public void deleteWith(int qnaNo) throws Exception;
 	
 	@Insert("insert into tbl_qna (memberNo,qna_type,title,contents,parent,depth)"
-			+ " values(34,'reply','´äº¯ µå¸³´Ï´Ù^^', #{contents}, #{qnaNo},'b')")
+			+ " values(34,'reply','ï¿½äº¯ ï¿½å¸³ï¿½Ï´ï¿½^^', #{contents}, #{qnaNo},'b')")
 	public void create(QnAVO qvo) throws Exception;
+	
+	@Insert("insert into tbl_qna (memberNo,qna_type,title,contents,parent,depth)"
+			+ " values(34,#{qna_type},#{title}, #{contents}, #{parent},'a')")
+	public void createFaq(QnAVO qvo) throws Exception;
 	
 	@Update("update tbl_qna set replycnt=replycnt+1, regdate=regdate where qnaNo=#{qnaNo}")
 	public void cntplus(QnAVO qvo) throws Exception;
@@ -49,14 +53,13 @@ public interface QnAMapper {
 			+" tbl_qna.contents contents, tbl_qna.regdate regdate, tbl_qna.parent parent, tbl_qna.depth depth, tbl_qna.replycnt replycnt "
 			+"from tbl_qna inner join tbl_member on tbl_qna.memberNo = tbl_member.memberNo "
 			+ "where qnaNo=#{qnaNo}")
-	public QnAVO read(int qnaNo) throws Exception;	//°øÅë
+	public QnAVO read(int qnaNo) throws Exception;	//ï¿½ï¿½ï¿½ï¿½
 	
 	//UserMapper
-	@Select("select tbl_qna.qnaNo qnaNo, tbl_qna.memberNo memberNo, tbl_member.id id, tbl_member.name name, tbl_qna.qna_type qna_type, tbl_qna.title title,"
-			+ "	tbl_qna.contents contents, tbl_qna.regdate regdate, tbl_qna.parent parent, tbl_qna.depth depth, tbl_qna.replycnt replycnt "
-			+ "from tbl_qna inner join tbl_member on tbl_qna.memberNo = tbl_member.memberNo "
-			+ "where tbl_qna.memberNo=#{memberNo} group by memberNo")
-	public QnAVO userRead(int memberNo) throws Exception;
+	@Select("select tbl_qna.qnaNo qnaNo, tbl_qna.memberNo memberNo, tbl_member.id id, tbl_member.name name "
+			+"from tbl_qna inner join tbl_member on tbl_qna.memberNo = tbl_member.memberNo "
+			+"where tbl_member.memberNo=#{memberNo} limit 1")
+	public QnAVO memberInfo(int memberNo) throws Exception;
 	
 	@Insert("insert into tbl_qna (memberNo,qna_type,title,contents,parent,depth) "
 			+ "values(#{memberNo},#{qna_type},#{title},#{contents},#{parent},'a')")
@@ -70,4 +73,8 @@ public interface QnAMapper {
 	
 	@Update("update tbl_qna set qna_type=#{qna_type}, title=#{title}, contents=#{contents} where qnaNo=#{qnaNo}")
 	public void updateUser(QnAVO qvo) throws Exception;
+	
+	public List<QnAVO> faqList(Criteria cri) throws Exception;
+	
+	public PageMaker faqTotal(Criteria cri) throws Exception; 
 }

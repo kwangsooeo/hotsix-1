@@ -18,7 +18,7 @@
 <body>
 <div class='contentsDiv'>
 	<form class="regForm">
-	<input type='hidden' name='memberNo' value='6'>
+	<input type='hidden' name='memberNo' value='${qna.memberNo }'>
 	<input type='hidden' name='qnaNo' value='${qna.qnaNo }'>
 		<div class="form-group">
 			<label class="col-sm-2 control-label">문의유형</label>
@@ -29,7 +29,7 @@
 		<div class="form-group">
 			<label class="col-sm-2 control-label">아이디</label>
 			<div class="col-sm-10">
-			<input type="text" class="form-control" name='id' value="id" readOnly> 
+			<input type="text" class="form-control" name='id' value="${qna.id }" readOnly> 
 			</div>
 		</div>
 		<div class="form-group">
@@ -51,7 +51,7 @@
 	    
 	      		<button type="button" class="delBtn btn btn-default">삭제</button>
 	     
-	      		<button type="button" class="listBtn btn btn-default">FAQ보기</button>
+	      		<button type="button" class="listBtn btn btn-default">Q&A List</button>
 	      	</div>
       	</div>
 

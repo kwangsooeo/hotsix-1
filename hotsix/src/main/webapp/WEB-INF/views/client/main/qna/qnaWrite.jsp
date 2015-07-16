@@ -18,7 +18,7 @@
 <div class='contentsDiv'>
 	<form class="regForm">
 		<div class="form-group">
-		<input type='hidden' name='memberNo' value='6'>
+		<input type='hidden' name='memberNo' value="${user.memberNo}">
 			<label class="col-sm-2 control-label">문의유형</label>
 			<div class="col-sm-10">
 				<select name= 'qna_type' class="qnaType form-control">
@@ -35,7 +35,7 @@
 		<div class="form-group">
 			<label class="col-sm-2 control-label">아이디</label>
 			<div class="col-sm-10">
-			<input type="text" class="form-control" name='id' value="id" readOnly> 
+			<input type="text" class="form-control" name='id' value="${user.id }" readOnly> 
 			</div>
 		</div>
 		<div class="form-group">
@@ -53,7 +53,7 @@
 		
 		<div class="form-group">
     	<div class="col-sm-offset-2 col-sm-10">
-      		<button type="button" class="btn btn-default">문의하기</button>
+      		<button type="button" class="btn btn-default">보내기</button>
       	</div>
       	</div>
 	</form>
@@ -65,7 +65,7 @@
 <script type="text/javascript">
 $(document).ready(function(){
 	var form = $(".regForm");
-	
+	console.log($('input[name=memberNo]').val());
 	$('.btn').on("click", function(event){
 		
 		var data = form.serialize();

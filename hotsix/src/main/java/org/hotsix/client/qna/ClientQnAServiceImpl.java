@@ -18,11 +18,6 @@ public class ClientQnAServiceImpl implements ClientQnAService {
 
 
 	@Override
-	public QnAVO qna_userInfo(int memberNo) throws Exception {
-		// TODO Auto-generated method stub
-		return mapper.userRead(memberNo);
-	}
-	@Override
 	public void qna_userQnA(QnAVO qvo) throws Exception {
 		mapper.createQnA(qvo);
 		
@@ -61,5 +56,20 @@ public class ClientQnAServiceImpl implements ClientQnAService {
 	public void qna_userDelete(int qnaNo) throws Exception {
 		mapper.delete(qnaNo);
 		
+	}
+	@Override
+	public QnAVO qna_userInfo(int memberNo) throws Exception {
+		// TODO Auto-generated method stub
+		return mapper.memberInfo(memberNo);
+	}
+	@Override
+	public List<QnAVO> qna_faqList(Criteria cri) throws Exception {
+		// TODO Auto-generated method stub
+		return mapper.faqList(cri);
+	}
+	@Override
+	public PageMaker faqTotal(Criteria cri) throws Exception {
+		// TODO Auto-generated method stub
+		return mapper.faqTotal(cri);
 	}
 }

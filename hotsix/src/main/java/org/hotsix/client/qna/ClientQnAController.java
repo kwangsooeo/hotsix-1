@@ -20,17 +20,18 @@ public class ClientQnAController {
 	private ClientQnAService service;
 	
 	@RequestMapping("qnaList")
-	public String clientQnA(@ModelAttribute("cri")Criteria cri, Model model) throws Exception{
-		
-		model.addAttribute("list", service.qna_List(cri));
-		model.addAttribute("page", service.total(cri).calcPage(cri));
+	public String clientQnA(@ModelAttribute("cri")Criteria cri,@ModelAttribute("vo")QnAVO vo, Model model) throws Exception{
+		vo.setMemberNo(6);		
+		model.addAttribute("list", service.qna_faqList(cri));
+		model.addAttribute("page", service.faqTotal(cri).calcPage(cri));
 		
 		return "/client/main/qna/qnaList";
 	}
 	
 	@RequestMapping(value="qnaWrite", method=RequestMethod.GET)
-	public String clientWrite(int memberNo) throws Exception{
+	public String clientWrite(int memberNo, Model model) throws Exception{
 		
+		model.addAttribute("user", service.qna_userInfo(memberNo));
 		return "/client/main/qna/qnaWrite";
 	}
 	
@@ -69,7 +70,7 @@ public class ClientQnAController {
 
 		service.qna_ModifyUser(vo);
 		
-		return "Complete a modification";
+		return "Complete a modification 아아";
 	}
 	
 	@RequestMapping(value="qnaDelete/{qnaNo}", method=RequestMethod.POST)
