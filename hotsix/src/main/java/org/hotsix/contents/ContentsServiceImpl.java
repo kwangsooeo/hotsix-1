@@ -61,9 +61,9 @@ public class ContentsServiceImpl implements ContentsService {
 	}
 
 	@Override
-	public void insertVideoID(String link) throws Exception {
+	public void insertVideoID(int contentsNo, String link) throws Exception {
 		// TODO Auto-generated method stub
-		mapper.insertVideoID(link);
+		mapper.insertVideoID(contentsNo, link);
 	}
 
 	

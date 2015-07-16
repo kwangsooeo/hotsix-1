@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 import org.hotsix.contents.ContentsVO;
@@ -25,8 +26,11 @@ public interface ContentsMapper {
 	public ContentsVO read(Integer no)throws Exception;	
 	
 	//동영상 ID삽입.
-	@Insert("insert into tbl_link (link) values(#{link})")
-	public void insertVideoID(String link) throws Exception;	
+	@Insert("insert into tbl_link values(null,#{contentsNo} ,#{link})")
+	public void insertVideoID(@Param("contentsNo")int contentsNo, @Param("link")String link) throws Exception;	
+	
+	@Select("select contentsNo, jobName from tbl_contents, tbl_job where tbl_job.jobName = #{jobName} group by tbl_contents.contentsNo")
+	public ContentsVO selectVideoID(String jobName);
 	
 	//수정
 	@Update("update tbl_contents set title=#{title}, link=#{link} where contentsNo=#{contentsNo}")

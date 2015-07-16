@@ -23,8 +23,8 @@ public class LoginChkInterceptor extends HandlerInterceptorAdapter{
 		Cookie ck = WebUtils.getCookie(request, "login");
 //		System.out.println(session.getAttribute(ck.getValue()));
 //		System.out.println("name : "+ck.getName()+"  value : "+ck.getValue());
-		if(session.getAttribute(ck.getValue()) == null){
-//		if(ck == null){
+//		if(session.getAttribute(ck.getValue()) == null){
+		if(ck == null){
 			session.setAttribute(ck.getValue(), mMapper.logData(ck.getValue()));
 			response.sendRedirect("/");
 			return false;

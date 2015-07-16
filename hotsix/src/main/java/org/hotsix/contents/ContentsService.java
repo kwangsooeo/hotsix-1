@@ -22,5 +22,5 @@ public interface ContentsService {
 	//전체 게시물 카운트
 	public PageMaker countPaging(Criteria cri)throws Exception;
 	//Youtube ID삽입.
-	public void insertVideoID(String link) throws Exception;	
+	public void insertVideoID(int contentsNo, String link) throws Exception;	
 }
