@@ -37,20 +37,28 @@
                 width: 98%;
                 height:96.5%;
                 margin: 1% 1% 1% 1%;
-                padding: 9% 0 6% 0;
+                padding: 120px 0 6% 0;
                 border: 8px solid #ffec00;
             }
             
             .frame #player{
                 width: 100%;
-                height: 100%;
+                height: 90%;
             }
             
             .logo {
                top: 0;
                width: 20%;
                margin: 0 auto;
-
+            }
+            
+            .logo a{
+            margin: 0 auto 0 auto;
+            }
+            
+            .logo a img{
+            top:0;
+                        
             }
 
         #main {
@@ -58,7 +66,7 @@
             height: 100%;
             position: absolute;
             top: 0;
-            left: 0;
+            left: 0;	
         }
         
         .top{
@@ -81,6 +89,19 @@
             right: 0;
             top: 0;
         }
+        body:before {
+	    content: "";
+	    position: fixed;
+	    top: -10px;
+	    left: 0;
+	    width: 100%;
+	    height: 10px;
+	
+	    -webkit-box-shadow: 0px 0px 10px rgba(0,0,0,.8);
+	    -moz-box-shadow: 0px 0px 10px rgba(0,0,0,.8);
+	    box-shadow: 0px 0px 10px rgba(0,0,0,.8);
+	    z-index: 100;
+		}
 
         body{
             overflow: hidden;
@@ -91,8 +112,8 @@
         	margin-top:3px;
         	margin-right: 2.65%;
         	background-color: rgba(34, 172, 56, 0.5);
-        	border-top: 50px solid ;
-        	border-bottom:  70px solid ; 
+        	border-top: 50px;
+        	border-bottom:  70px; 
         	padding-right: 5%;
         }
         
@@ -207,7 +228,7 @@
 </div>
 </div>
 
-<a href="#" class="hideDiv" id="hideBtn" style="position: absolute; z-index: 99; left: 0; top: 0; width: 100%; height: 100%;"><span class="" aria-hidden="true" style="font-size:2.5em;"></span></a>
+<span class="hideDiv" id="hideBtn" style="position: absolute; z-index: 99; left: 0; top: 0; width: 100%; height: 100%;"><span class="" aria-hidden="true" style="font-size:2.5em;"></span></span>
 <iframe class="MainFrame hideDiv" id="sideFrame" style="position: absolute; background:rgba(72, 72, 72, .5); z-index:90; left:0; top:0; width: 100%; height: 100%;" frameborder="0" scrolling="yes" onload="autoResize(this)"></iframe>
 <iframe src="" id="mainFrame" class="MainFrame hideDiv radius" style="position: absolute; z-index:100; left:0; top:0; margin-top:5%; margin-left:20%; width: 60%; height: 90%; background: white;" frameborder="0" scrolling="yes" onload="autoResize(this)">
 </iframe>
