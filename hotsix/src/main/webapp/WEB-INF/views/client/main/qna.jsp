@@ -8,7 +8,6 @@
 </head>
 <body>
 <div style="background: blue">
-daskndlaksndlasndlkasndkln
 </div>
 </body>
 </html>
