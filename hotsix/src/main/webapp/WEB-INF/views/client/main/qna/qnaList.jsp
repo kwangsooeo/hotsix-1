@@ -91,8 +91,8 @@
 		  	</div>
 	  	</div>
 	  	<div class='footer'>
-	  		<p>궁금한 항목에 대한 도움말이 없으시다면, 문의해 주세요.</p>
-			<button type="button" class="qnaBtn btn btn-default">문의하기</button>
+	  		<p>궁금한 항목에 대한 도움말이 없으시다면, 문의해 주세요.
+			<button type="button" class="qnaBtn btn btn-default">문의하기</button></p>
 		</div>
 	</div>
 </div>
